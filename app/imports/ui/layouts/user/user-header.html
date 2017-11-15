@@ -2,9 +2,10 @@
   <div class="ui top fixed borderless inverted green menu">
     <div class="ui container">
       <div class="item"><h1><i class="users icon"></i>Munchie Zone</h1></div>
-      <a href="#">Home</a>
+      <a class="{{isActiveRoute "Home_Page"}} item" href="{{pathFor "Home_Page" username=routeUserName}}">Home</a>
       <a class="{{isActiveRoute "Profile_Page"}} item" href="{{pathFor "Profile_Page" username=routeUserName}}">Your Profile</a>
       <a class="{{isActiveRoute "Filter_Page"}} item" href="{{pathFor "Filter_Page" username=routeUserName}}">Orders</a>
+      <a class="{{isActiveRoute "Create_Page"}} item" href="{{pathFor "Create_Page" username=routeUserName}}">Create</a>
       <div class="right aligned item">{{> Cas_Login }}</div>
     </div>
   </div>
