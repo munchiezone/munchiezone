@@ -68,6 +68,22 @@ userRoutes.route('/filter', {
   },
 });
 
+export const homePageRouteName = 'Home_Page';
+userRoutes.route('/home', {
+  name: homePageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: homePageRouteName });
+  },
+});
+
+export const createPageRouteName = 'Create_Page';
+userRoutes.route('/create', {
+  name: createPageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: createPageRouteName });
+  },
+});
+
 /*                        MISC ROUTES                       */
 FlowRouter.notFound = {
   action() {
