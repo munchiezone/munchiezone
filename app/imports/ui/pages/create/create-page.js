@@ -1,46 +1,79 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { Profiles } from '/imports/api/profile/ProfileCollection';
+import { Orders } from '/imports/api/order/OrderCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
 
-const selectedInterestsKey = 'selectedInterests';
+const displaySuccessMessage = 'displaySuccessMessage';
+const displayErrorMessages = 'displayErrorMessages';
 
 Template.Create_Page.onCreated(function onCreated() {
   this.subscribe(Interests.getPublicationName());
-  this.subscribe(Profiles.getPublicationName());
+  this.subscribe(Orders.getPublicationName());
   this.messageFlags = new ReactiveDict();
-  this.messageFlags.set(selectedInterestsKey, undefined);
+  this.messageFlags.set(displaySuccessMessage, false);
+  this.messageFlags.set(displayErrorMessages, false);
+  this.context = Orders.getSchema().namedContext('Create_Page');
 });
 
 Template.Create_Page.helpers({
-  profiles() {
-    // Initialize selectedInterests to all of them if messageFlags is undefined.
-    if (!Template.instance().messageFlags.get(selectedInterestsKey)) {
-      Template.instance().messageFlags.set(selectedInterestsKey, _.map(Interests.findAll(), interest => interest.name));
-    }
-    // Find all profiles with the currently selected interests.
-    const allProfiles = Profiles.findAll();
-    const selectedInterests = Template.instance().messageFlags.get(selectedInterestsKey);
-    return _.filter(allProfiles, profile => _.intersection(profile.interests, selectedInterests).length > 0);
+  successClass() {
+    return Template.instance().messageFlags.get(displaySuccessMessage) ? 'success' : '';
   },
-
-  interests() {
-    return _.map(Interests.findAll(),
+  displaySuccessMessage() {
+    return Template.instance().messageFlags.get(displaySuccessMessage);
+  },
+  errorClass() {
+    return Template.instance().messageFlags.get(displayErrorMessages) ? 'error' : '';
+  },
+  order() {
+    return Orders.findDoc(FlowRouter.getParam('restaurant'));
+  },
+  // change this after altering Interest Collection to diet types !!!!!!!
+  interest() {
+    const order = Orders.findDoc(FlowRouter.getParam('restaurant'));
+    const selectedDietType = order.dietType;
+    return order && _.map(Interests.findAll(),
         function makeInterestObject(interest) {
-          return {
-            label: interest.name,
-            selected: _.contains(Template.instance().messageFlags.get(selectedInterestsKey), interest.name),
-          };
+          return { label: interest.name, selected: _.contains(selectedDietType, interest.name) };
         });
   },
 });
 
+// get drop down menus to work !!!!!!!!!!
 Template.Create_Page.events({
-  'submit .filter-data-form'(event, instance) {
+  'submit .order-data-form'(event, instance) {
     event.preventDefault();
-    const selectedOptions = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
-    instance.messageFlags.set(selectedInterestsKey, _.map(selectedOptions, (option) => option.value));
+    const restaurant = event.target.Restaurant.value;
+    const orders = event.target.Order.value;
+    // const foodType = event.target.Food.value;
+    // const dietType = event.target.Diet.value;
+    const timeMinutes = event.target.Time.value;
+    const pickupLocation = event.target.Pickup.value;
+    // selected dietTypes and selected foodTypes should be altered like below ???
+    const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
+    const dietType = _.map(selectedInterests, (option) => option.value);
+    const foodType = _.map(selectedInterests, (option) => option.value);
+
+    const newOrderData = { restaurant, orders, foodType, dietType, timeMinutes, pickupLocation };
+
+    // Clear out any old validation errors.
+    instance.context.reset();
+    // Invoke clean so that updatedProfileData reflects what will be inserted.
+    const cleanData = Orders.getSchema().clean(newOrderData);
+    // Determine validity.
+    instance.context.validate(cleanData);
+
+    if (instance.context.isValid()) {
+      const docID = Orders.findDoc(FlowRouter.getParam('restaurant'))._id;
+      const id = Orders.update(docID, { $set: cleanData });
+      instance.messageFlags.set(displaySuccessMessage, id);
+      instance.messageFlags.set(displayErrorMessages, false);
+    } else {
+      instance.messageFlags.set(displaySuccessMessage, false);
+      instance.messageFlags.set(displayErrorMessages, true);
+    }
   },
 });
 
