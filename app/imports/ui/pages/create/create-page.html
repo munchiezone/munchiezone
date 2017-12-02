@@ -21,42 +21,11 @@
       </div>
 
       <div class="field">
-<<<<<<< HEAD
-        {{> TextArea_Form_Control label="Your Order" placeholder="Order here" value=profile.userName errorMessage=(fieldError
-=======
         {{> TextArea_Form_Control label="Order" placeholder="Order here" value=profile.userName errorMessage=(fieldError
->>>>>>> f6b1a224290637411b960de3605ba83cef32045a
         "userName") rows="4"}}
       </div>
 
       <div class="field">
-<<<<<<< HEAD
-        {{> Select_Form_Control label="Type of Food" options=interests errorMessage=(fieldError "type") multiple=true }}
-      </div>
-
-      <div class="fields">
-        {{> Select_Form_Control label="Diet Type" options=interests errorMessage=(fieldError "diet") multiple=true }}
-        {{> Select_Form_Control label="Time Limit" options=interests errorMessage=(fieldError "time") multiple=false }}
-      </div>
-
-      <!-- Not sure What else we need, kept Text_Form_Control for template
-      <div class="field">
-        {{> Text_Form_Control label="Email" placeholder="email@sample.com" value=profile.email
-        errorMessage=(fieldError "email")}}
-      </div>
-      -->
-
-      <div class="field">
-        Phone Notifications
-        <button class="circular ui icon button">
-          <i class="call icon"></i>
-        </button>
-      </div>
-      <!--
-      {{> TextArea_Form_Control label="Bio" value=profile.bio placeholder="Short bio statement here"
-      errorMessage=(fieldError "bio")}}
-      -->
-=======
         {{> Text_Form_Control label="Food" placeholder="Type of Food" options=interests errorMessage=(fieldError "type") multiple=true }}
       </div>
 
@@ -64,7 +33,6 @@
         {{> Select_Form_Control label="Diet" placeholder="Diet Type" options=interests errorMessage=(fieldError "diet") multiple=true }}
         {{> Text_Form_Control label="Time" placeholder="Time Limit" errorMessage=(fieldError "time") multiple=false }}
       </div>
->>>>>>> f6b1a224290637411b960de3605ba83cef32045a
 
       <div class="field">
         {{> Text_Form_Control label="Pickup" placeholder="Pickup Location"}}
