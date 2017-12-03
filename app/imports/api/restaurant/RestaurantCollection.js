@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
 import { Tracker } from 'meteor/tracker';
 
-/** @module Retaurant */
+/** @module Restaurant */
 
 /**
  * Represents a specific restaurant, such as "McDonalds".
@@ -61,7 +61,7 @@ class RestaurantCollection extends BaseCollection {
    * @throws { Meteor.Error} If any of the instanceIDs cannot be found.
    */
   findNames(restaurantIDs) {
-    return restaurantIDs.map(resturantID => this.findName(restaurantID));
+    return restaurantIDs.map(restaurantID => this.findName(restaurantID));
   }
 
   /**
@@ -117,4 +117,4 @@ class RestaurantCollection extends BaseCollection {
 /**
  * Provides the singleton instance of this class to all other entities.
  */
-export const Interests = new RestaurantCollection();
+export const Restaurant = new RestaurantCollection();
