@@ -8,8 +8,8 @@ import { removeAllEntities } from '/imports/api/base/BaseUtilities';
 
 if (Meteor.isServer) {
   describe('RestaurantCollection', function testSuite() {
-    const name = 'McDonalds';
-    const description = 'Popular fast food restaurant';
+    const name = 'Software Engineering';
+    const description = 'Tools and techniques for team-based development of high quality software systems';
     const defineObject = { name, description };
 
     before(function setup() {

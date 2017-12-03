@@ -1,6 +1,7 @@
 import SimpleSchema from 'simpl-schema';
 import BaseCollection from '/imports/api/base/BaseCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
+import { Restaurants } from '/imports/api/restaurant/RestaurantCollection';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
@@ -61,6 +62,8 @@ class OrderCollection extends BaseCollection {
 
     // Throw an error if any of the passed Interest names are not defined.
     Interests.assertNames(dietType);
+
+    // IMPLEMENT RESTAURANT STUFF
 
     // Throw an error if there are duplicates in the passed foodType names.
     if (foodType.length !== _.uniq(foodType).length) {

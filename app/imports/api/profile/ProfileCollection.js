@@ -1,6 +1,7 @@
 import SimpleSchema from 'simpl-schema';
 import BaseCollection from '/imports/api/base/BaseCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
+import { Restaurants } from '/imports/api/restaurant/RestaurantCollection';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
@@ -25,6 +26,8 @@ class ProfileCollection extends BaseCollection {
       lastName: { type: String, optional: true },
       interests: { type: Array, optional: true },
       'interests.$': { type: String },
+      restaurants: { type: Array, optional: true },
+      'restaurants.$': { type: String },
       number: { type: String, optional: true },
       picture: { type: SimpleSchema.RegEx.Url, optional: true },
       email: { type: String, optional: true },
@@ -52,7 +55,7 @@ class ProfileCollection extends BaseCollection {
    * if one or more interests are not defined, or if github, facebook, and instagram are not URLs.
    * @returns The newly created docID.
    */
-  define({ firstName = '', lastName = '', username, interests = [], picture = '', number = '', email = '' }) {
+  define({ firstName = '', lastName = '', username, interests = [], picture = '', number = '', email = '', restaurants = [] }) {
     // make sure required fields are OK.
     const checkPattern = { firstName: String, lastName: String, username: String, picture: String, email: String,
       number: String };
@@ -65,12 +68,20 @@ class ProfileCollection extends BaseCollection {
     // Throw an error if any of the passed Interest names are not defined.
     Interests.assertNames(interests);
 
+    // Throws and error if any of the passed Restaurant names are undefined.
+    Restaurants.assertNames(restaurants);
+
     // Throw an error if there are duplicates in the passed interest names.
     if (interests.length !== _.uniq(interests).length) {
       throw new Meteor.Error(`${interests} contains duplicates`);
     }
 
-    return this._collection.insert({ firstName, lastName, username, email, interests, picture, number });
+    // Throws an error if there are duplicates in the passed restaurant names.
+    if (restaurants.length !== _.uniqu(restaurants).length) {
+      throw new Meteor.Error(`${restaurants} contains duplicates`);
+    }
+
+    return this._collection.insert({ firstName, lastName, username, email, interests, restaurants, picture, number });
   }
 
   /**
@@ -84,10 +95,11 @@ class ProfileCollection extends BaseCollection {
     const lastName = doc.lastName;
     const username = doc.username;
     const interests = doc.interests;
+    const restaurants = doc.restaurants;
     const picture = doc.picture;
     const number = doc.number;
     const email = doc.email;
-    return { firstName, lastName, username, interests, picture, number, email};
+    return { firstName, lastName, username, interests, restaurants, picture, number, email};
   }
 }
 

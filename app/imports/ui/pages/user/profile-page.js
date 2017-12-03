@@ -4,6 +4,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
+import { Restaurants } from '/imports/api/restaurant/RestaurantCollection';
 
 const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
@@ -11,6 +12,7 @@ const displayErrorMessages = 'displayErrorMessages';
 Template.Profile_Page.onCreated(function onCreated() {
   this.subscribe(Interests.getPublicationName());
   this.subscribe(Profiles.getPublicationName());
+  this.subscribe(Restaurants.getPublicationName());
   this.messageFlags = new ReactiveDict();
   this.messageFlags.set(displaySuccessMessage, false);
   this.messageFlags.set(displayErrorMessages, false);
@@ -38,6 +40,14 @@ Template.Profile_Page.helpers({
           return { label: interest.name, selected: _.contains(selectedInterests, interest.name) };
         });
   },
+  restaurants() {
+    const profile = Profiles.findDoc(FlowRouter.getParam('username'));
+    const selectedRestaurants = profile.restaurants;
+    return profile && _.map(Restaurants.findAll(),
+        function makeRestaurantObject(restaurant) {
+          return { label: restaurant.name, selected: _.contains(selectedRestaurants, restaurant.name) };
+        });
+  }
 });
 
 
@@ -52,9 +62,12 @@ Template.Profile_Page.events({
     const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
     const interests = _.map(selectedInterests, (option) => option.value);
     const email = event.target.Email.value;
+    const selectedRestaurants = _.filter(event.target.Restaurants.selectedOptions, (option) => option.selected);
+    const restaurants = _.map(selectedRestaurants, (option) => option.value);
+
 
     const updatedProfileData = { firstName, lastName, number, picture, interests, email,
-      username };
+      username, restaurants };
 
     // Clear out any old validation errors.
     instance.context.reset();
