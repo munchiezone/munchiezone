@@ -43,8 +43,7 @@
       </div>
 
       <div class="field">
-        {{> Text_Form_Control label="Favorite Restaurants" placeholder="Favorite Restaurants" value=profile.restaurants
-        errorMessage=(fieldError "restaurants")}}
+        {{> Select_Form_Control label="Favorite Restaurants" options=restaurants errorMessage=(fieldError "restaurant") multiple=true }}
 
       </div>
 

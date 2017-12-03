@@ -30,6 +30,37 @@
         }
       ]
     },
+
+    {
+      "name": "RestaurantCollection",
+      "contents": [
+        {
+          "name": "McDonalds",
+          "description": ""
+        },
+        {
+          "name": "Shaka Shaka Tea",
+          "description": ""
+        },
+        {
+          "name": "Cafe Maharani",
+          "description": ""
+        },
+        {
+          "name": "Curry House",
+          "description": ""
+        },
+        {
+          "name": "Da Spot",
+          "description": ""
+        },
+        {
+          "name": "Shokudo",
+          "description": ""
+        }
+      ]
+    },
+
     {
       "name": "ProfileCollection",
       "contents": [

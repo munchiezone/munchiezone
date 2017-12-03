@@ -4,6 +4,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
+import { Restaurants } from '/imports/api/restaurant/RestaurantCollection';
 
 const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
@@ -38,8 +39,15 @@ Template.Profile_Page.helpers({
           return { label: interest.name, selected: _.contains(selectedInterests, interest.name) };
         });
   },
+  restaurants() {
+    const profile = Profiles.findDoc(FlowRouter.getParam('username'));
+    const selectedRestaurants = profile.restaurants;
+    return profile && _.map(Restaurants.findAll(),
+        function makeRestaurantObject(restaurant) {
+      return { label: retaurant.name, selected: _.contains(selectedRestaurants, retaurant.name)};
+        });
+  },
 });
-
 
 Template.Profile_Page.events({
   'submit .profile-data-form'(event, instance) {
@@ -56,9 +64,12 @@ Template.Profile_Page.events({
     const bio = event.target.Bio.value;
     const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
     const interests = _.map(selectedInterests, (option) => option.value);
-
-    const updatedProfileData = { firstName, lastName, title, picture, github, facebook, instagram, bio, interests,
-      username, location };
+    const selectedRestaurants = _.filter(event.target.Restaurants.selectedOptions, (option) => option.selected);
+    const restaurants = _.map(selectedRestaurants, (option) => option.value);
+    const updatedProfileData = {
+      firstName, lastName, title, picture, github, facebook, instagram, bio, interests,
+      username, location, restaurants,
+    };
 
     // Clear out any old validation errors.
     instance.context.reset();

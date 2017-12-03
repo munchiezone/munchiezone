@@ -19,7 +19,8 @@ class OrderCollection extends BaseCollection {
    */
   constructor() {
     super('Order', new SimpleSchema({
-      restaurant: { type: String },
+      restaurant: { type: Array, optional: false},
+      'restaurant.$': { type: String },
       orders: { type: String },
       foodType: { type: Array, optional: true },
       'foodType.$': { type: String },
