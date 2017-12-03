@@ -59,10 +59,10 @@ Template.Profile_Page.events({
     const number = event.target.Number.value;
     const username = FlowRouter.getParam('username'); // schema requires username.
     const picture = event.target.Picture.value;
-    const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
+    const selectedInterests = _.filter(event.target.Diet.selectedOptions, (option) => option.selected);
     const interests = _.map(selectedInterests, (option) => option.value);
     const email = event.target.Email.value;
-    const selectedRestaurants = _.filter(event.target.Restaurants.selectedOptions, (option) => option.selected);
+    const selectedRestaurants = _.filter(event.target.Favorites.selectedOptions, (option) => option.selected);
     const restaurants = _.map(selectedRestaurants, (option) => option.value);
 
 
