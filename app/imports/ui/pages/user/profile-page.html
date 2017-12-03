@@ -51,17 +51,6 @@
         {{> Select_Form_Control label="Diet Type" options=interests errorMessage=(fieldError "diet") multiple=true }}
       </div>
 
-      <div class="field">
-        Phone Notifications
-        <button class="circular ui icon button">
-          <i class="call icon"></i>
-        </button>
-      </div>
-      <!--
-      {{> TextArea_Form_Control label="Bio" value=profile.bio placeholder="Short bio statement here"
-      errorMessage=(fieldError "bio")}}
-      -->
-
 
       <button class="ui primary button" type="submit">Submit</button>
       {{#if displaySuccessMessage}}
