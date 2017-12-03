@@ -8,7 +8,7 @@ import { Tracker } from 'meteor/tracker';
 /** @module Restaurant */
 
 /**
- * Represents a specific restaurant, such as "McDonalds".
+ * Represents a specific restaurant, such as "Software Engineering".
  * @extends module:Base~BaseCollection
  */
 class RestaurantCollection extends BaseCollection {
@@ -26,8 +26,8 @@ class RestaurantCollection extends BaseCollection {
   /**
    * Defines a new Restaurant.
    * @example
-   * Restaurant.define({ name: 'McDonalds',
-   *                    description: 'A popular fast food restaurant that serves various foods.' });
+   * Restaurants.define({ name: 'Software Engineering',
+   *                    description: 'Methods for group development of large, high quality software systems' });
    * @param { Object } description Object with keys name and description.
    * Name must be previously undefined. Description is optional.
    * Creates a "slug" for this name and stores it in the slug field.
@@ -44,7 +44,7 @@ class RestaurantCollection extends BaseCollection {
   }
 
   /**
-   * Returns the Restaurant name corresponding to the passed interest docID.
+   * Returns the Restaurant name corresponding to the passed restaurant docID.
    * @param restaurantID An restaurant docID.
    * @returns { String } An restaurant name.
    * @throws { Meteor.Error} If the restaurant docID cannot be found.
@@ -66,7 +66,7 @@ class RestaurantCollection extends BaseCollection {
 
   /**
    * Throws an error if the passed name is not a defined Restaurant name.
-   * @param name The name of an interest.
+   * @param name The name of an restaurant.
    */
   assertName(name) {
     this.findDoc(name);
@@ -95,7 +95,7 @@ class RestaurantCollection extends BaseCollection {
    * If nothing is passed, then an empty array is returned.
    * @param { String[] } names An array of restaurant names.
    * @returns { String[] } The docIDs associated with the names.
-   * @throws { Meteor.Error } If any instance is not an restaurant 9name.
+   * @throws { Meteor.Error } If any instance is not an Restaurant name.
    */
   findIDs(names) {
     return (names) ? names.map((instance) => this.findID(instance)) : [];
@@ -117,4 +117,4 @@ class RestaurantCollection extends BaseCollection {
 /**
  * Provides the singleton instance of this class to all other entities.
  */
-export const Restaurant = new RestaurantCollection();
+export const Restaurants = new RestaurantCollection();

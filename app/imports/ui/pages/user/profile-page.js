@@ -4,7 +4,6 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
-import { Restaurants } from '/imports/api/restaurant/RestaurantCollection';
 
 const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
@@ -39,32 +38,23 @@ Template.Profile_Page.helpers({
           return { label: interest.name, selected: _.contains(selectedInterests, interest.name) };
         });
   },
-  restaurants() {
-    const profile = Profiles.findDoc(FlowRouter.getParam('username'));
-    const selectedRestaurants = profile.restaurants;
-    return profile && _.map(Restaurants.findAll(),
-        function makeRestaurantObject(restaurant) {
-      return { label: retaurant.name, selected: _.contains(selectedRestaurants, retaurant.name)};
-        });
-  },
 });
+
 
 Template.Profile_Page.events({
   'submit .profile-data-form'(event, instance) {
     event.preventDefault();
     const firstName = event.target.First.value;
     const lastName = event.target.Last.value;
+    const number = event.target.Number.value;
     const username = FlowRouter.getParam('username'); // schema requires username.
     const picture = event.target.Picture.value;
-    const email = event.target.Email.value;
-    const number = event.target.Number.value;
     const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
     const interests = _.map(selectedInterests, (option) => option.value);
-    const selectedRestaurants = _.filter(event.target.Restaurants.selectedOptions, (option) => option.selected);
-    const restaurants = _.map(selectedRestaurants, (option) => option.value);
-    const updatedProfileData = {
-      firstName, lastName, picture, interests, number, email, username, restaurants,
-    };
+    const email = event.target.Email.value;
+
+    const updatedProfileData = { firstName, lastName, number, picture, interests, email,
+      username };
 
     // Clear out any old validation errors.
     instance.context.reset();
@@ -84,4 +74,3 @@ Template.Profile_Page.events({
     }
   },
 });
-
