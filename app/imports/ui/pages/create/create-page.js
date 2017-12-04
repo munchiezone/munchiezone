@@ -4,7 +4,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Orders } from '/imports/api/order/OrderCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
-import { Restaurant } from '/imports/api/restaurant/RestaurantCollection';
+import { Restaurants } from '/imports/api/restaurant/RestaurantCollection';
 
 const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
@@ -12,9 +12,7 @@ const displayErrorMessages = 'displayErrorMessages';
 Template.Create_Page.onCreated(function onCreated() {
   this.subscribe(Interests.getPublicationName());
   this.subscribe(Orders.getPublicationName());
-
-  // this.subscribe(Restaurant.getPublicationName());
-
+  this.subscribe(Restaurants.getPublicationName());
   this.messageFlags = new ReactiveDict();
   this.messageFlags.set(displaySuccessMessage, false);
   this.messageFlags.set(displayErrorMessages, false);
@@ -34,62 +32,48 @@ Template.Create_Page.helpers({
   order() {
     return Orders.findDoc(FlowRouter.getParam('order'));
   },
-  // change this after altering Interest Collection to diet types !!!!!!!
-  interest() {
+  interests() {
     const order = Orders.findDoc(FlowRouter.getParam('order'));
     const selectedInterests = order.interests;
+    // alert(order); // DELETE
+    // alert(selectedInterests); // DELETE
     return order && _.map(Interests.findAll(),
         function makeInterestObject(interest) {
+      // alert("makeInterestObject function");
           return { label: interest.name, selected: _.contains(selectedInterests, interest.name) };
         });
   },
   restaurants() {
-    alert("inside restaurant function"); // DELETE LATER
     const order = Orders.findDoc(FlowRouter.getParam('order'));
-    const selectedRestaurant = order.restaurants;
-    alert(selectedRestaurant); // DELETE LATER
-    return order && _.map(Restaurant.findAll(),
-        function makeRestaurantObject(restaurants) {
-      alert("inside makeRestaurantObject function"); // DELETE LATER
-          return { label: restaurants.name, selected: _.contains(selectedRestaurant, restaurants.name) };
+    const selectedRestaurants = order.restaurants;
+    // alert(order);
+    // alert(selectedRestaurants);
+    return order && _.map(Restaurants.findAll(),
+        function makeRestaurantObject(restaurant) {
+      // alert("makeRestaurantObject function");
+          return { label: restaurant.name, selected: _.contains(selectedRestaurants, restaurant.name) };
         });
   }
 });
 
-// get drop down menus to work !!!!!!!!!!
+
 Template.Create_Page.events({
   'submit .order-data-form'(event, instance) {
     event.preventDefault();
-
     const orders = event.target.Order.value;
     const timeMinutes = event.target.Time.value;
     const pickupLocation = event.target.Pickup.value;
     const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
     const interests = _.map(selectedInterests, (option) => option.value);
-    const selectedRestaurant = _.filter(event.target.Favorites.selectedOptions, (option) => option.selected);
+    const selectedRestaurant = _.filter(event.target.Restaurants.selectedOptions, (option) => option.selected);
     const restaurants = _.map(selectedRestaurant, (option) => option.value);
     const foodType = event.target.Food.value;
 
-    /*
-    // const restaurant = event.target.Restaurant.value;
-    const orders = event.target.Order.value;
-    // const foodType = event.target.Food.value;
-    // const dietType = event.target.Diet.value;
-    const timeMinutes = event.target.Time.value;
-    const pickupLocation = event.target.Pickup.value;
-    const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
-    const dietType = _.map(selectedInterests, (option) => option.value);
-    //const foodType = _.map(selectedInterests, (option) => option.value);
-    const selectedRestaurant = _.filter(event.target.Favorites.selectedOptions, (option) => option.selected);
-    const restaurant = _.map(selectedRestaurant, (option) => option.value);
-*/
-
-
-    const newOrderData = { restaurant, orders, foodType, interests, timeMinutes, pickupLocation };
+    const newOrderData = { restaurants, orders, foodType, interests, timeMinutes, pickupLocation };
 
     // Clear out any old validation errors.
     instance.context.reset();
-    // Invoke clean so that updatedProfileData reflects what will be inserted.
+    // Invoke clean so that updatedOrderData reflects what will be inserted.
     const cleanData = Orders.getSchema().clean(newOrderData);
     // Determine validity.
     instance.context.validate(cleanData);
