@@ -34,30 +34,52 @@ Template.Create_Page.helpers({
   // change this after altering Interest Collection to diet types !!!!!!!
   interest() {
     const order = Orders.findDoc(FlowRouter.getParam('restaurant'));
-    const selectedDietType = order.dietType;
+    const selectedInterests = order.interests;
     return order && _.map(Interests.findAll(),
         function makeInterestObject(interest) {
-          return { label: interest.name, selected: _.contains(selectedDietType, interest.name) };
+          return { label: interest.name, selected: _.contains(selectedInterests, interest.name) };
         });
   },
+  restaurants() {
+    const order = Orders.findDoc(FlowRouter.getParam('order'));
+    const selectedRestaurant = order.restaurants;
+    return order && _.map(Restaurant.findAll(),
+        function makeRestaurantObject(restaurants) {
+          return { label: restaurants.name, selected: _.contains(selectedRestaurant, restaurants.name) };
+        });
+  }
 });
 
 // get drop down menus to work !!!!!!!!!!
 Template.Create_Page.events({
   'submit .order-data-form'(event, instance) {
     event.preventDefault();
-    const restaurant = event.target.Restaurant.value;
+
+    const orders = event.target.Order.value;
+    const timeMinutes = event.target.Time.value;
+    const pickupLocation = event.target.Pickup.value;
+    const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
+    const interests = _.map(selectedInterests, (option) => option.value);
+    const selectedRestaurants = _.filter(event.target.Favorites.selectedOptions, (option) => option.selected);
+    const restaurants = _.map(selectedRestaurants, (option) => option.value);
+    const foodType = event.target.Food.value;
+
+    /*
+    // const restaurant = event.target.Restaurant.value;
     const orders = event.target.Order.value;
     // const foodType = event.target.Food.value;
     // const dietType = event.target.Diet.value;
     const timeMinutes = event.target.Time.value;
     const pickupLocation = event.target.Pickup.value;
-    // selected dietTypes and selected foodTypes should be altered like below ???
     const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
     const dietType = _.map(selectedInterests, (option) => option.value);
-    const foodType = _.map(selectedInterests, (option) => option.value);
+    //const foodType = _.map(selectedInterests, (option) => option.value);
+    const selectedRestaurant = _.filter(event.target.Favorites.selectedOptions, (option) => option.selected);
+    const restaurant = _.map(selectedRestaurant, (option) => option.value);
+*/
 
-    const newOrderData = { restaurant, orders, foodType, dietType, timeMinutes, pickupLocation };
+
+    const newOrderData = { restaurants, orders, foodType, interests, timeMinutes, pickupLocation };
 
     // Clear out any old validation errors.
     instance.context.reset();

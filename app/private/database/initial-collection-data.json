@@ -25,7 +25,19 @@
           "description": "No gluten"
         },
         {
-          "name": "Keto",
+          "name": "Ketogenic",
+          "description": "Low carb"
+        },
+        {
+          "name": "Atkins",
+          "description": "Low carb"
+        },
+        {
+          "name": "Raw Food",
+          "description": "Low carb"
+        },
+        {
+          "name": "Mediterranean Diet",
           "description": "Low carb"
         }
       ]
@@ -56,6 +68,30 @@
         {
           "name": "Shokudo",
           "description": "."
+        },
+        {
+          "name": "Banan",
+          "description": "."
+        },
+        {
+          "name": "Tsukuneya",
+          "description": "."
+        },
+        {
+          "name": "Alan Wong's",
+          "description": ""
+        },
+        {
+          "name": "Cafe Kaila",
+          "description": ""
+        },
+        {
+          "name": "The Nook Neighborhood Bistro",
+          "description": ""
+        },
+        {
+          "name": "Sweet-E's Cafe",
+          "description": ""
         }
       ]
     },
