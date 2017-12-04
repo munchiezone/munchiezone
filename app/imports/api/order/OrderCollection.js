@@ -20,7 +20,7 @@ class OrderCollection extends BaseCollection {
    */
   constructor() {
     super('Order', new SimpleSchema({
-      restaurant: { type: Array, optional: false},
+      restaurant: { type: Array, optional: false },
       'restaurant.$': { type: String },
       orders: { type: String },
       foodType: { type: Array, optional: true },
@@ -52,8 +52,8 @@ class OrderCollection extends BaseCollection {
   define({ restaurant = '', orders = '', username, foodType = [], dietType = [], timeMinutes = null,
            pickupLocation = '' }) {
     // make sure required fields are OK.
-    const checkPattern = { restaurant: String, orders: String, username: String, bio: String, picture: String,
-      title: String, location: String };
+    const checkPattern = { restaurant: String, orders: String, username: String, foodType: String,
+      dietType: Array, timeMinutes: Number, pickupLocation: String };
     check({ restaurant, orders, username, foodType, dietType, timeMinutes, pickupLocation }, checkPattern);
 
     if (this.find({ restaurant }).count() > 0) {
@@ -64,6 +64,7 @@ class OrderCollection extends BaseCollection {
     Interests.assertNames(dietType);
 
     // IMPLEMENT RESTAURANT STUFF
+    Restaurants.assertNames(restaurant);
 
     // Throw an error if there are duplicates in the passed foodType names.
     if (foodType.length !== _.uniq(foodType).length) {
