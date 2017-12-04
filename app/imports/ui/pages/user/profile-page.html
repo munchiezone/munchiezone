@@ -9,8 +9,8 @@
       <form class="ui equal width form profile-data-form {{ successClass }} {{ errorClass }}">
 
         <div class="fields">
-          {{> Text_Form_Control label="First" placeholder="Philip" value=profile.firstName errorMessage=(fieldError "firstName")}}
-          {{> Text_Form_Control label="Last" placeholder="Johnson" value=profile.lastName errorMessage=(fieldError "lastName")}}
+          {{> Text_Form_Control label="First" placeholder="First Name" value=profile.firstName errorMessage=(fieldError "firstName")}}
+          {{> Text_Form_Control label="Last" placeholder="Last Name" value=profile.lastName errorMessage=(fieldError "lastName")}}
 
         </div>
 
@@ -20,7 +20,7 @@
 
         <div class="field">
           {{> Text_Form_Control label="Email" placeholder="abc@yoursite.com" value=profile.email errorMessage=(fieldError "email")}}
-          {{> Text_Form_Control label="Number" placeholder="Student" value=profile.number errorMessage=(fieldError "number")}}
+          {{> Text_Form_Control label="Number" placeholder="(XXX)-XXX-XXXX" value=profile.number errorMessage=(fieldError "number")}}
         </div>
 
           <div class="field">

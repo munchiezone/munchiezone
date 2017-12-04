@@ -8,8 +8,9 @@ import { Restaurant } from '/imports/api/restaurant/RestaurantCollection';
 
 const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
-
+alert("hi");
 Template.Create_Page.onCreated(function onCreated() {
+  alert("inside template");
   this.subscribe(Interests.getPublicationName());
   this.subscribe(Orders.getPublicationName());
   this.messageFlags = new ReactiveDict();
@@ -29,11 +30,11 @@ Template.Create_Page.helpers({
     return Template.instance().messageFlags.get(displayErrorMessages) ? 'error' : '';
   },
   order() {
-    return Orders.findDoc(FlowRouter.getParam('restaurant'));
+    return Orders.findDoc(FlowRouter.getParam('order'));
   },
   // change this after altering Interest Collection to diet types !!!!!!!
   interest() {
-    const order = Orders.findDoc(FlowRouter.getParam('restaurant'));
+    const order = Orders.findDoc(FlowRouter.getParam('order'));
     const selectedInterests = order.interests;
     return order && _.map(Interests.findAll(),
         function makeInterestObject(interest) {
@@ -41,10 +42,13 @@ Template.Create_Page.helpers({
         });
   },
   restaurants() {
+    alert("inside restaurant function");
     const order = Orders.findDoc(FlowRouter.getParam('order'));
     const selectedRestaurant = order.restaurants;
-    return order && _.map(Restaurant.findAll(),
+    alert(selectedRestaurant);
+    return order && _.map(Restaurants.findAll(),
         function makeRestaurantObject(restaurants) {
+      alert("inside makeRestaurantObject function");
           return { label: restaurants.name, selected: _.contains(selectedRestaurant, restaurants.name) };
         });
   }
@@ -89,7 +93,7 @@ Template.Create_Page.events({
     instance.context.validate(cleanData);
 
     if (instance.context.isValid()) {
-      const docID = Orders.findDoc(FlowRouter.getParam('restaurant'))._id;
+      const docID = Orders.findDoc(FlowRouter.getParam('order'))._id;
       const id = Orders.update(docID, { $set: cleanData });
       instance.messageFlags.set(displaySuccessMessage, id);
       instance.messageFlags.set(displayErrorMessages, false);

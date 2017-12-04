@@ -20,9 +20,9 @@ class OrderCollection extends BaseCollection {
    */
   constructor() {
     super('Order', new SimpleSchema({
-      restaurant: { type: Array, optional: false},
-      'restaurant.$': { type: String },
-      orders: { type: String },
+      restaurants: { type: Array, optional: false},
+      'restaurants.$': { type: String },
+      items: { type: String },
       foodType: { type: Array, optional: true },
       'foodType.$': { type: String },
       interest: { type: Array, optional: true },
@@ -49,15 +49,13 @@ class OrderCollection extends BaseCollection {
    * if one or more interests are not defined, or if github, facebook, and instagram are not URLs.
    * @returns The newly created docID.
    */
-  define({ restaurant = '', orders = '', username, foodType = [], interest = [], timeMinutes = null,
-           pickupLocation = '' }) {
+  define({ restaurants = '', items = '', username, foodType = [], interest = [], timeMinutes = null, pickupLocation = '' }) {
     // make sure required fields are OK.
-    const checkPattern = { restaurant: String, orders: String, username: String, bio: String, picture: String,
-      title: String, location: String };
-    check({ restaurant, orders, username, foodType, interest, timeMinutes, pickupLocation }, checkPattern);
+    const checkPattern = { restaurants: String, items: String, username: String, location: String };
+    check({ restaurants, items, username, foodType, interest, timeMinutes, pickupLocation }, checkPattern);
 
-    if (this.find({ restaurant }).count() > 0) {
-      throw new Meteor.Error(`${restaurant} is previously defined in another Order`);
+    if (this.find({ restaurants }).count() > 0) {
+      throw new Meteor.Error(`${restaurants} is previously defined in another Order`);
     }
 
     // Throw an error if any of the passed Interest names are not defined.
@@ -75,7 +73,7 @@ class OrderCollection extends BaseCollection {
       throw new Meteor.Error(`${interest} contains duplicates`);
     }
 
-    return this._collection.insert({ restaurant, orders, username, foodType, interest, timeMinutes, pickupLocation });
+    return this._collection.insert({ restaurants, items, username, foodType, interest, timeMinutes, pickupLocation });
   }
 
   /**
@@ -85,14 +83,14 @@ class OrderCollection extends BaseCollection {
    */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
-    const restaurant = doc.restaurant;
-    const orders = doc.orders;
+    const restaurants = doc.restaurants;
+    const items = doc.items;
     const username = doc.username;
     const foodType = doc.foodType;
     const interest = doc.interest;
     const timeMinutes = doc.timeMinutes;
     const pickupLocation = doc.pickupLocation;
-    return { restaurant, orders, username, foodType, interest, timeMinutes, pickupLocation };
+    return { restaurants, items, username, foodType, interest, timeMinutes, pickupLocation };
   }
 }
 
