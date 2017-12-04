@@ -8,11 +8,13 @@ import { Restaurant } from '/imports/api/restaurant/RestaurantCollection';
 
 const displaySuccessMessage = 'displaySuccessMessage';
 const displayErrorMessages = 'displayErrorMessages';
-alert("hi");
+
 Template.Create_Page.onCreated(function onCreated() {
-  alert("inside template");
   this.subscribe(Interests.getPublicationName());
   this.subscribe(Orders.getPublicationName());
+
+  // this.subscribe(Restaurant.getPublicationName());
+
   this.messageFlags = new ReactiveDict();
   this.messageFlags.set(displaySuccessMessage, false);
   this.messageFlags.set(displayErrorMessages, false);
@@ -42,13 +44,13 @@ Template.Create_Page.helpers({
         });
   },
   restaurants() {
-    alert("inside restaurant function");
+    alert("inside restaurant function"); // DELETE LATER
     const order = Orders.findDoc(FlowRouter.getParam('order'));
     const selectedRestaurant = order.restaurants;
-    alert(selectedRestaurant);
-    return order && _.map(Restaurants.findAll(),
+    alert(selectedRestaurant); // DELETE LATER
+    return order && _.map(Restaurant.findAll(),
         function makeRestaurantObject(restaurants) {
-      alert("inside makeRestaurantObject function");
+      alert("inside makeRestaurantObject function"); // DELETE LATER
           return { label: restaurants.name, selected: _.contains(selectedRestaurant, restaurants.name) };
         });
   }
@@ -64,8 +66,8 @@ Template.Create_Page.events({
     const pickupLocation = event.target.Pickup.value;
     const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
     const interests = _.map(selectedInterests, (option) => option.value);
-    const selectedRestaurants = _.filter(event.target.Favorites.selectedOptions, (option) => option.selected);
-    const restaurants = _.map(selectedRestaurants, (option) => option.value);
+    const selectedRestaurant = _.filter(event.target.Favorites.selectedOptions, (option) => option.selected);
+    const restaurants = _.map(selectedRestaurant, (option) => option.value);
     const foodType = event.target.Food.value;
 
     /*
@@ -83,7 +85,7 @@ Template.Create_Page.events({
 */
 
 
-    const newOrderData = { restaurants, orders, foodType, interests, timeMinutes, pickupLocation };
+    const newOrderData = { restaurant, orders, foodType, interests, timeMinutes, pickupLocation };
 
     // Clear out any old validation errors.
     instance.context.reset();
