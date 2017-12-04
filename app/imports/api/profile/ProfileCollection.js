@@ -77,7 +77,7 @@ class ProfileCollection extends BaseCollection {
     }
 
     // Throws an error if there are duplicates in the passed restaurant names.
-    if (restaurants.length !== _.uniqu(restaurants).length) {
+    if (restaurants.length !== _.uniq(restaurants).length) {
       throw new Meteor.Error(`${restaurants} contains duplicates`);
     }
 
