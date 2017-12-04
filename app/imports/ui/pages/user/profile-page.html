@@ -2,76 +2,43 @@
 
   {{#if Template.subscriptionsReady}}
 
-  <div class="ui text container segment">
-    <div class="ui dividing header">
-      Profile
+    <div class="ui text container segment">
+      <div class="ui dividing header">
+        Profile
+      </div>
+      <form class="ui equal width form profile-data-form {{ successClass }} {{ errorClass }}">
+
+        <div class="fields">
+          {{> Text_Form_Control label="First" placeholder="Philip" value=profile.firstName errorMessage=(fieldError "firstName")}}
+          {{> Text_Form_Control label="Last" placeholder="Johnson" value=profile.lastName errorMessage=(fieldError "lastName")}}
+
+        </div>
+
+        <div class="field">
+          {{> Text_Form_Control label="Picture" placeholder="http://foo.com/shot.jpg" value=profile.picture errorMessage=(fieldError "picture")}}
+        </div>
+
+        <div class="field">
+          {{> Text_Form_Control label="Email" placeholder="abc@yoursite.com" value=profile.email errorMessage=(fieldError "email")}}
+          {{> Text_Form_Control label="Number" placeholder="Student" value=profile.number errorMessage=(fieldError "number")}}
+        </div>
+
+          <div class="field">
+          {{> Select_Form_Control label="Diet" options=interests errorMessage=(fieldError "interests") multiple=true }}
+        </div>
+
+        <div class="field">
+          {{> Select_Form_Control label="Favorites" options=restaurants errorMessage=(fieldError "restaurants") multiple=true }}
+        </div>
+
+        <button class="ui primary button" type="submit">Submit</button>
+        {{#if displaySuccessMessage}}
+          <div class="ui success message">
+            <p>Profile data successfully updated.</p>
+          </div>
+        {{/if}}
+      </form>
     </div>
-
-
-    <a href="#">
-      <img class="ui centered medium circular image" src="http://laoblogger.com/images/anonymous-person-clipart-8.jpg">
-    </a>
-
-
-    <form class="ui equal width form profile-data-form {{ successClass }} {{ errorClass }}">
-
-      <div class="field">
-        {{> Text_Form_Control label="Username" placeholder="Username" value=profile.userName errorMessage=(fieldError
-        "userName")}}
-      </div>
-
-      <div class="field">
-        {{> Text_Form_Control label="Picture" placeholder="http://foo.com/shot.jpg" value=profile.picture
-        errorMessage=(fieldError "picture")}}
-      </div>
-
-      <div class="fields">
-        {{> Text_Form_Control label="First" placeholder="First" value=profile.firstName errorMessage=(fieldError
-        "firstName")}}
-        {{> Text_Form_Control label="Last" placeholder="Last" value=profile.lastName errorMessage=(fieldError
-        "lastName")}}
-      </div>
-
-      <div class="field">
-        {{> Text_Form_Control label="Email" placeholder="email@sample.com" value=profile.email
-        errorMessage=(fieldError "email")}}
-      </div>
-
-      <div class="field">
-        {{> Text_Form_Control label="Phone Number" placeholder="(XXX)- XXX - XXXX" value=profile.phone
-        errorMessage=(fieldError "phone")}}
-      </div>
-
-      <div class="field">
-        {{> Text_Form_Control label="Favorite Restaurants" placeholder="Favorite Restaurants" value=profile.restaurants
-        errorMessage=(fieldError "restaurants")}}
-
-      </div>
-
-      <div class="field">
-        {{> Select_Form_Control label="Diet Type" options=interests errorMessage=(fieldError "diet") multiple=true }}
-      </div>
-
-      <div class="field">
-        Phone Notifications
-        <button class="circular ui icon button">
-          <i class="call icon"></i>
-        </button>
-      </div>
-      <!--
-      {{> TextArea_Form_Control label="Bio" value=profile.bio placeholder="Short bio statement here"
-      errorMessage=(fieldError "bio")}}
-      -->
-
-
-      <button class="ui primary button" type="submit">Submit</button>
-      {{#if displaySuccessMessage}}
-      <div class="ui success message">
-        <p>Profile data successfully updated.</p>
-      </div>
-      {{/if}}
-    </form>
-  </div>
 
   {{/if}}
 
