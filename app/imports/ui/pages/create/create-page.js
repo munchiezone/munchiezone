@@ -50,16 +50,16 @@ Template.Create_Page.helpers({
 Template.Create_Page.events({
   'submit .order-data-form'(event, instance) {
     event.preventDefault();
-    const orders = event.target.Order.value;
+    const items = event.target.Order.value;
     const timeMinutes = event.target.Time.value;
     const pickupLocation = event.target.Pickup.value;
-    const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
-    const interests = _.map(selectedInterests, (option) => option.value);
-    const selectedRestaurant = _.filter(event.target.Restaurants.selectedOptions, (option) => option.selected);
-    const restaurants = _.map(selectedRestaurant, (option) => option.value);
+    const selectedInterests = _.filter(event.target.Diet.selectedOptions, (option) => option.selected);
+    const interest = _.map(selectedInterests, (option) => option.value);
+    const selectedRestaurant = _.filter(event.target.Restaurant.selectedOptions, (option) => option.selected);
+    const restaurant = _.map(selectedRestaurant, (option) => option.value);
     const foodType = event.target.Food.value;
 
-    const newOrderData = { restaurants, orders, foodType, interests, timeMinutes, pickupLocation };
+    const newOrderData = { restaurant, items, foodType, interest, timeMinutes, pickupLocation };
 
     // Clear out any old validation errors.
     instance.context.reset();
@@ -69,8 +69,8 @@ Template.Create_Page.events({
     instance.context.validate(cleanData);
 
     if (instance.context.isValid()) {
-      const docID = Orders.findDoc(FlowRouter.getParam('order'))._id;
-      const id = Orders.update(docID, { $set: cleanData });
+      // const docID = Orders.findDoc(FlowRouter.getParam('order'))._id;
+      const id = Orders.insert(cleanData);
       instance.messageFlags.set(displaySuccessMessage, id);
       instance.messageFlags.set(displayErrorMessages, false);
     } else {
