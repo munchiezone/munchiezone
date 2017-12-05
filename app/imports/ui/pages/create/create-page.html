@@ -1,28 +1,19 @@
 <template name="Create_Page">
+
   {{#if Template.subscriptionsReady}}
 
   <div class="ui text container segment">
     <div class="ui dividing header">
       Create an Order!
     </div>
-
-
-    <!-- Not sure if we want this //Portrait picture
-    <a href="#">
-      <img class="ui centered medium circular image" src="http://laoblogger.com/images/anonymous-person-clipart-8.jpg">
-    </a>
-    -->
-
-
     <form class="ui equal width form profile-data-form {{ successClass }} {{ errorClass }}">
 
       <div class="field">
-        {{> Select_Form_Control label="Restaurant" options=restaurants errorMessage=(fieldError "restaurant") multiple=false }}
+        {{> Select_Form_Control label="Restaurant" options=restaurants errorMessage=(fieldError "restaurants") multiple=false }}
       </div>
 
       <div class="field">
-        {{> TextArea_Form_Control label="Order" placeholder="Order here" value=profile.userName errorMessage=(fieldError
-        "userName") rows="4"}}
+        {{> TextArea_Form_Control label="Items to Order" placeholder="Order here" value=order.orders errorMessage=(fieldError "orders") rows="4"}}
       </div>
 
       <div class="field">
@@ -30,7 +21,8 @@
       </div>
 
       <div class="fields">
-        {{> Select_Form_Control label="Diet" placeholder="Diet Type" options=interests errorMessage=(fieldError "diet") multiple=true }}
+        {{> Select_Form_Control label="Diet" options=interests errorMessage=(fieldError "interests") multiple=true }}
+
         {{> Text_Form_Control label="Time" placeholder="Time Limit" errorMessage=(fieldError "time") multiple=false }}
       </div>
 
