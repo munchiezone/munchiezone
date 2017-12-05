@@ -35,7 +35,7 @@ Template.Create_Page.helpers({
   interests() {
     return _.map(Interests.findAll(),
         function makeInterestObject(interest) {
-      return { label: interest.name };
+          return { label: interest.name };
         });
   },
   restaurants() {
