@@ -20,14 +20,13 @@ class OrderCollection extends BaseCollection {
    */
   constructor() {
     super('Order', new SimpleSchema({
-      restaurants: { type: Array, optional: false},
-      'restaurants.$': { type: String },
+      restaurant: { type: Array },
+      'restaurant.$': { type: String },
       items: { type: String },
-      foodType: { type: Array, optional: true },
-      'foodType.$': { type: String },
+      foodType: { type: String, optional: true },
       interest: { type: Array, optional: true },
       'interest.$': { type: String },
-      timeMinutes: { type: Number },
+      timeMinutes: { type: String },
       pickupLocation: { type: String },
     }, { tracker: Tracker }));
   }
@@ -36,44 +35,40 @@ class OrderCollection extends BaseCollection {
    * Defines a new Order.
    * @example
    * Orders.define({ restaurant: 'McDonalds',
-   *                   orders: '1 Cheeseburger, 3 Large Cokes',
+   *                   itmes: '1 Cheeseburger, 3 Large Cokes',
    *                   foodType: ['American', 'Fastfood'],
    *                   interest: ['Vegetarian'],
-   *                   timeMinutes: 60,
+   *                   timeMinutes: '60',
    *                   pickupLocation: 'Campus Center: 2465 Campus Rd, Honolulu, HI 96822',
    * @param { Object } description Object with required key username.
    * Remaining keys are optional.
    * Username must be unique for all users. It should be the UH email account.
    * Restaurants is an array of defined restaurant names.
    * @throws { Meteor.Error } If a user with the supplied username already exists, or
-   * if one or more interests are not defined, or if github, facebook, and instagram are not URLs.
+   * if one or more interests
    * @returns The newly created docID.
    */
-  define({ restaurants = '', items = '', username, foodType = [], interest = [], timeMinutes = null, pickupLocation = '' }) {
+  define({ restaurant = [], items = '', username, foodType = [], interest = [],
+           timeMinutes = '', pickupLocation = '' }) {
     // make sure required fields are OK.
-    const checkPattern = { restaurants: String, items: String, username: String, location: String };
-    check({ restaurants, items, username, foodType, interest, timeMinutes, pickupLocation }, checkPattern);
+    const checkPattern = { restaurant: String, items: String, username: String, location: String,
+      timeMinutes: String };
+    check({ restaurant, items, username, foodType, interest, timeMinutes, pickupLocation }, checkPattern);
 
-    if (this.find({ restaurants }).count() > 0) {
-      throw new Meteor.Error(`${restaurants} is previously defined in another Order`);
+    if (this.find({ restaurant }).count() > 0) {
+      throw new Meteor.Error(`${restaurant} is previously defined in another Order`);
     }
 
     // Throw an error if any of the passed Interest names are not defined.
     Interests.assertNames(interest);
-
     // IMPLEMENT RESTAURANT STUFF
-
-    // Throw an error if there are duplicates in the passed foodType names.
-    if (foodType.length !== _.uniq(foodType).length) {
-      throw new Meteor.Error(`${foodType} contains duplicates`);
-    }
-
+    Restaurants.assertNames(restaurant);
     // Throw an error if there are duplicates in the passed interest names.
     if (interest.length !== _.uniq(interest).length) {
       throw new Meteor.Error(`${interest} contains duplicates`);
     }
 
-    return this._collection.insert({ restaurants, items, username, foodType, interest, timeMinutes, pickupLocation });
+    return this._collection.insert({ restaurant, items, username, foodType, interest, timeMinutes, pickupLocation });
   }
 
   /**
@@ -83,14 +78,14 @@ class OrderCollection extends BaseCollection {
    */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
-    const restaurants = doc.restaurants;
+    const restaurant = doc.restaurant;
     const items = doc.items;
     const username = doc.username;
     const foodType = doc.foodType;
     const interest = doc.interest;
     const timeMinutes = doc.timeMinutes;
     const pickupLocation = doc.pickupLocation;
-    return { restaurants, items, username, foodType, interest, timeMinutes, pickupLocation };
+    return { restaurant, items, username, foodType, interest, timeMinutes, pickupLocation };
   }
 }
 
