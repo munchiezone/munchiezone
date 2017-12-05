@@ -1,4 +1,5 @@
 <template name="Create_Page">
+
   {{#if Template.subscriptionsReady}}
 
   <div class="ui text container segment">
@@ -20,7 +21,7 @@
       </div>
 
       <div class="fields">
-        {{> Select_Form_Control label="Diet" placeholder="Diet Type" options=interests errorMessage=(fieldError "diet") multiple=true }}
+        {{> Select_Form_Control label="Diet" options=interests errorMessage=(fieldError "interests") multiple=true }}
 
         {{> Text_Form_Control label="Time" placeholder="Time Limit" errorMessage=(fieldError "time") multiple=false }}
       </div>

@@ -33,27 +33,17 @@ Template.Create_Page.helpers({
     return Orders.findDoc(FlowRouter.getParam('order'));
   },
   interests() {
-    const order = Orders.findDoc(FlowRouter.getParam('order'));
-    const selectedInterests = order.interests;
-    // alert(order); // DELETE
-    // alert(selectedInterests); // DELETE
-    return order && _.map(Interests.findAll(),
+    return _.map(Interests.findAll(),
         function makeInterestObject(interest) {
-      // alert("makeInterestObject function");
-          return { label: interest.name, selected: _.contains(selectedInterests, interest.name) };
+      return { label: interest.name };
         });
   },
   restaurants() {
-    const order = Orders.findDoc(FlowRouter.getParam('username'));
-    const selectedRestaurants = Restaurants.restaurants;
-    // alert(order);
-    // alert(selectedRestaurants);
-    return order && _.map(Restaurants.findAll(),
+    return _.map(Restaurants.findAll(),
         function makeRestaurantObject(restaurant) {
-      // alert("makeRestaurantObject function");
-          return { label: restaurant.name, selected: _.contains(selectedRestaurants, restaurant.name) };
+          return { label: restaurant.name };
         });
-  }
+  },
 });
 
 
