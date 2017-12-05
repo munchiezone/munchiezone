@@ -47,7 +47,7 @@ Template.Profile_Page.helpers({
         function makeRestaurantObject(restaurant) {
           return { label: restaurant.name, selected: _.contains(selectedRestaurants, restaurant.name) };
         });
-  }
+  },
 });
 
 

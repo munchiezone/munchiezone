@@ -115,6 +115,10 @@ class BaseCollection {
     return true;
   }
 
+  insert(data) {
+    this._collection.insert(data);
+    return true;
+  }
   /**
    * Returns true if the passed entity is in this collection.
    * @param { String | Object } name The docID, or an object specifying a document, or the name, or the username.

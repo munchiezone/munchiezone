@@ -22,13 +22,13 @@ class ProfileCollection extends BaseCollection {
     super('Profile', new SimpleSchema({
       username: { type: String },
       // Remainder are optional
-      firstName: { type: String, optional: true },
-      lastName: { type: String, optional: true },
+      firstName: { type: String },
+      lastName: { type: String },
       interests: { type: Array, optional: true },
       'interests.$': { type: String },
       restaurants: { type: Array, optional: true },
       'restaurants.$': { type: String },
-      number: { type: String, optional: true },
+      number: { type: String },
       picture: { type: SimpleSchema.RegEx.Url, optional: true },
       email: { type: String, optional: true },
     }, { tracker: Tracker }));
@@ -55,7 +55,8 @@ class ProfileCollection extends BaseCollection {
    * if one or more interests are not defined, or if github, facebook, and instagram are not URLs.
    * @returns The newly created docID.
    */
-  define({ firstName = '', lastName = '', username, interests = [], picture = '', number = '', email = '', restaurants = [] }) {
+  define({ firstName = '', lastName = '', username, interests = [], picture = '',
+           number = '', email = '', restaurants = [] }) {
     // make sure required fields are OK.
     const checkPattern = { firstName: String, lastName: String, username: String, picture: String, email: String,
       number: String };
@@ -99,7 +100,7 @@ class ProfileCollection extends BaseCollection {
     const picture = doc.picture;
     const number = doc.number;
     const email = doc.email;
-    return { firstName, lastName, username, interests, restaurants, picture, number, email};
+    return { firstName, lastName, username, interests, restaurants, picture, number, email };
   }
 }
 
