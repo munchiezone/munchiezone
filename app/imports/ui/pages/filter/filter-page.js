@@ -15,12 +15,6 @@ Template.Filter_Page.onCreated(function onCreated() {
 
 Template.Filter_Page.helpers({
   orders() {
-    // Initialize selectedInterests to all of them if messageFlags is undefined.
-
-    if (!Template.instance().messageFlags.get(selectedRestaurantsKey)) {
-      Template.instance().messageFlags.set(selectedRestaurantsKey, _.map(Restaurants.findAll(), restaurant => restaurant.name));
-    }
-
     // Find all orders with the currently selected interests.
     const allOrders = Orders.findAll();
     const selectedRestaurants = Template.instance().messageFlags.get(selectedRestaurantsKey);

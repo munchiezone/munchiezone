@@ -2,7 +2,6 @@
 
   <div class="card">
     <div class="content">
-      <img class="right floated mini ui image" src="{{ order.picture }}">
       <div class="header">
         {{ order.restaurant }}
       </div>
@@ -22,8 +21,8 @@
         {{#each interest in order.interests}}
           <a style="margin-bottom: 2px" class="ui red tag small label">{{interest}}</a>
         {{/each}}
+
       </div>
-      
     </div>
   </div>
 
