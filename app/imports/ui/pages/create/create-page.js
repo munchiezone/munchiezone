@@ -44,8 +44,8 @@ Template.Create_Page.helpers({
         });
   },
   restaurants() {
-    const order = Orders.findDoc(FlowRouter.getParam('order'));
-    const selectedRestaurants = order.restaurants;
+    const order = Orders.findDoc(FlowRouter.getParam('username'));
+    const selectedRestaurants = Restaurants.restaurants;
     // alert(order);
     // alert(selectedRestaurants);
     return order && _.map(Restaurants.findAll(),
