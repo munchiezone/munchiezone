@@ -50,16 +50,16 @@ Template.Create_Page.helpers({
 Template.Create_Page.events({
   'submit .order-data-form'(event, instance) {
     event.preventDefault();
-    const orders = event.target.Order.value;
+    const items = event.target.Items.value;
     const timeMinutes = event.target.Time.value;
     const pickupLocation = event.target.Pickup.value;
     const selectedInterests = _.filter(event.target.Interests.selectedOptions, (option) => option.selected);
-    const interests = _.map(selectedInterests, (option) => option.value);
+    const interest = _.map(selectedInterests, (option) => option.value);
     const selectedRestaurant = _.filter(event.target.Restaurants.selectedOptions, (option) => option.selected);
     const restaurants = _.map(selectedRestaurant, (option) => option.value);
     const foodType = event.target.Food.value;
 
-    const newOrderData = { restaurants, orders, foodType, interests, timeMinutes, pickupLocation };
+    const newOrderData = { restaurants, items, foodType, interest, timeMinutes, pickupLocation };
 
     // Clear out any old validation errors.
     instance.context.reset();
