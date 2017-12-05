@@ -1,28 +1,31 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { _ } from 'meteor/underscore';
-import { Profiles } from '/imports/api/profile/ProfileCollection';
+import { Orders } from '/imports/api/order/OrderCollection';
 import { Restaurants } from '/imports/api/restaurant/RestaurantCollection';
 
 const selectedRestaurantsKey = 'selectedRestaurants';
 
 Template.Filter_Page.onCreated(function onCreated() {
   this.subscribe(Restaurants.getPublicationName());
-  this.subscribe(Profiles.getPublicationName());
+  this.subscribe(Orders.getPublicationName());
   this.messageFlags = new ReactiveDict();
   this.messageFlags.set(selectedRestaurantsKey, undefined);
 });
 
 Template.Filter_Page.helpers({
-  profiles() {
+  orders() {
     // Initialize selectedInterests to all of them if messageFlags is undefined.
+
     if (!Template.instance().messageFlags.get(selectedRestaurantsKey)) {
       Template.instance().messageFlags.set(selectedRestaurantsKey, _.map(Restaurants.findAll(), restaurant => restaurant.name));
     }
-    // Find all profiles with the currently selected interests.
-    const allProfiles = Profiles.findAll();
+
+    // Find all orders with the currently selected interests.
+    const allOrders = Orders.findAll();
     const selectedRestaurants = Template.instance().messageFlags.get(selectedRestaurantsKey);
-    return _.filter(allProfiles, profile => _.intersection(profile.restaurants, selectedRestaurants).length > 0);
+    return _.filter(allOrders, order => _.intersection(order.restaurants, selectedRestaurants).length > 0);
+
   },
 
   restaurants() {

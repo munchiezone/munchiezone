@@ -1,0 +1,30 @@
+<template name="Directory_Order">
+
+  <div class="card">
+    <div class="content">
+      <img class="right floated mini ui image" src="{{ order.picture }}">
+      <div class="header">
+        {{ order.restaurant }}
+      </div>
+      <div class="meta">
+        {{ order.timeMinutes }}
+      </div>
+      <div class="meta">
+        {{ order.interest }}
+      </div>
+      <div class="description">
+        {{ order.items}}
+      </div>
+      <div class="meta">
+        {{ order.pickupLocation }}
+      </div>
+      <div style="margin-top: 10px">
+        {{#each interest in order.interests}}
+          <a style="margin-bottom: 2px" class="ui red tag small label">{{interest}}</a>
+        {{/each}}
+      </div>
+      
+    </div>
+  </div>
+
+</template>

@@ -1,17 +1,16 @@
 <template name="Filter_Page">
   {{#if Template.subscriptionsReady}}
-    <div style="margin-top: 10px; padding-bottom: 20px; background-color: white" class="ui container segment">
+    <div style="margin-top: 10px" class="ui container">
 
       <form class="ui equal width form filter-data-form">
         <div class="field">
-          <h3>Restaurant</h3>
-          {{> Select_Form_Control label="" options=restaurants multiple=true }}
+          <h3>Restaurants</h3>
+          {{> Select_Form_Control label="Retaurants" options=restaurants multiple=true }}
         </div>
-        <br>
-        <button class="ui centered red button" type="submit"><i class="search icon"></i>Filter</button>
+        <button class="ui red button" type="submit">Filter</button>
       </form>
 
-      {{> Filter_Page_Directory profiles=profiles }}
+      {{> Filter_Page_Directory orders=orders }}
 
     </div>
   {{/if}}

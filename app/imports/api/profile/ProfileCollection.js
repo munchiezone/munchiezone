@@ -22,13 +22,13 @@ class ProfileCollection extends BaseCollection {
     super('Profile', new SimpleSchema({
       username: { type: String },
       // Remainder are optional
-      firstName: { type: String },
-      lastName: { type: String },
+      firstName: { type: String, optional: true },
+      lastName: { type: String, optional: true },
       interests: { type: Array, optional: true },
       'interests.$': { type: String },
       restaurants: { type: Array, optional: true },
       'restaurants.$': { type: String },
-      number: { type: String },
+      number: { type: String, optional: true },
       picture: { type: SimpleSchema.RegEx.Url, optional: true },
       email: { type: String, optional: true },
     }, { tracker: Tracker }));
