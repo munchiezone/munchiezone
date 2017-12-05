@@ -1,213 +1,35 @@
 <template name="Filter_Page">
   {{#if Template.subscriptionsReady}}
-  <div style="margin-top: 10px; padding-bottom: 20px" class="ui container segment">
+    <div style="margin-top: 10px; background: white" class="ui container segment">
 
-
-    <div style="background-color: white">
       <form class="ui equal width form filter-data-form">
         <div class="field">
-          <div class="ui horizontal divider">
-            <h3>Dietary Needs</h3>
-          </div>
-          {{> Select_Form_Control label="" options=interests multiple=true }}
+          <div class="ui horizontal divider"><h3>Restaurants</h3></div>
+          {{> Select_Form_Control label="" options=restaurants multiple=true }}
         </div>
 
         <br>
-
-        <div class="ui two wide column centered grid">
-          <button class="ui centered green labeled icon button" type="submit">
-            <i class="search icon"></i>
-            Filter
-          </button>
-        </div>
-
-        <br>
-
+        <div class="ui two wide column centered grid"></div>
+        <button class="ui red button" type="submit"><i class="search" icon></i>Filter</button>
       </form>
-      <!--
-              {{> Filter_Page_Directory profiles=profiles }}
-      -->
-      <div class="ui horizontal divider">
-        Current Orders
-      </div>
-
-      <div class="ui four column doubling stackable centered grid container">
-
-
-        <!-- TESTING -->
-        <!-- Maharani -->
-
-        <div class="centered column">
-          <div class="ui fluid card">
-            <div class="image">
-              <img
-                  style="height: 205px"
-                  src="https://i1.wp.com/maharani-restaurant.com/wp-content/uploads/2017/09/logo-main3.png?fit=500%2C393">
-            </div>
-            <div class="content">
-              <a class="header">Cafe Maharani</a>
-              <div class="meta">
-                <a class="tag label">Vegetarian</a>
-                <br><br>
-                <div class="tiny ui green animated button" tabindex="0">
-                  <div class="visible content">See More</div>
-                  <div class="hidden content">
-                    <i class="right arrow icon"></i>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-            <div class="extra content">
-              <a>
-                <i class="user icon"></i>
-                2 People In!
-              </a>
-            </div>
-            <div class="ui bottom attached progress">
-              <div class="bar"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- McDonalds -->
-        <div class="centered column">
-          <div class="ui fluid card">
-            <div class="image">
-              <img
-                  src="http://diylogodesigns.com/blog/wp-content/uploads/2016/04/Mcdonalds-logo-icon-png-free.png">
-            </div>
-            <div class="content">
-              <a class="header">McDonalds</a>
-              <div class="meta">
-                <a class="tag label">Keto, </a>
-                <a class="tag label">Vegetarian</a>
-
-                <br><br>
-                <div class="tiny ui green animated button" tabindex="0">
-                  <div class="visible content">See More</div>
-                  <div class="hidden content">
-                    <i class="right arrow icon"></i>
-                  </div>
-                </div>
-
-
-              </div>
-            </div>
-            <div class="extra content">
-              <a>
-                <i class="user icon"></i>
-                14 People In!
-              </a>
-            </div>
-            <div class="ui bottom attached progress">
-              <div class="bar"></div>
-            </div>
-          </div>
-        </div>
-        <!-- McDonalds -->
-
-        <!-- Taste Tea -->
-        <div class="centered column">
-          <div class="ui fluid card">
-            <div class="image">
-              <img
-                  style="height: 205px" src="http://www.visitcorpuschristitx.org/site-images/1687/300x301">
-            </div>
-            <div class="content">
-              <a class="header">Taste Tea</a>
-              <div class="meta">
-                <a class="tag label">Vegetarian, </a>
-                <a class="tag label">Vegan</a>
-
-                <br><br>
-                <div class="tiny ui green animated button" tabindex="0">
-                  <div class="visible content">See More</div>
-                  <div class="hidden content">
-                    <i class="right arrow icon"></i>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-            <div class="extra content">
-              <a>
-                <i class="user icon"></i>
-                1 Person In!
-              </a>
-            </div>
-            <div class="ui bottom attached progress">
-              <div class="bar"></div>
-            </div>
-          </div>
-        </div>
-        <!-- Taste Tea -->
-        <!-- Uproll Cafe -->
-        <div class="centered column">
-          <div class="ui fluid card">
-            <div class="image">
-              <img
-                  style="height: 205px"
-                  src="https://static.wixstatic.com/media/4207ab_11939726b81c4d5fbd34ec5b35c6f3de.png/v1/fill/w_162,h_161,al_c,usm_0.66_1.00_0.01/4207ab_11939726b81c4d5fbd34ec5b35c6f3de.png">
-            </div>
-            <div class="content">
-              <a class="header">Uproll Cafe</a>
-              <div class="meta">
-                <a class="tag label">Vegetarian, </a>
-                <a class="tag label">Vegan, </a>
-                <a class="tag label">Pescetarian</a>
-
-                <br><br>
-                <div class="tiny ui green animated button" tabindex="0">
-                  <div class="visible content">See More</div>
-                  <div class="hidden content">
-                    <i class="right arrow icon"></i>
-                  </div>
-                </div>
-
-
-              </div>
-            </div>
-            <div class="extra content">
-              <a>
-                <i class="user icon"></i>
-                6 People In!
-              </a>
-            </div>
-            <div class="ui bottom attached progress">
-              <div class="bar"></div>
-            </div>
-          </div>
-        </div>
-        <!-- Uproll Cafe -->
-
-
-        <!-- test over-->
-
-
-      </div>
-    </div>
-
-
-    <div class="ui horizontal divider">
-      Or
-    </div>
-
-    <br>
-
-    <div class="ui two wide column centered grid">
-      <button class="ui centered green labeled icon button">
-
-        <i class="add icon"></i>
-        Create New Order
-      </button>
-      <br>
 
       <br>
 
+      <div class="ui horizontal divider">Current Orders</div>
+
+      {{> Filter_Page_Directory orders=orders }}
+
+      <div class="ui horizontal divider">Or</div>
+
+      <br>
+
+      <div class="ui two wide column centered grid">
+        <button class="ui centered red labeled icon button"><i class="add icon"></i>Create New Order</button>
+
+        <br>
+        <br>
+      </div>
+
     </div>
-  </div>
-
-
   {{/if}}
 </template>

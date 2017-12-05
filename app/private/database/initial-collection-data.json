@@ -139,7 +139,9 @@
       "name": "OrderCollection",
       "contents": [
         {
-          "restaurant": "Shokudo",
+          "restaurant": [
+            "Shokudo"
+          ],
           "items": "honey toast",
           "username": "abc",
           "foodType": [

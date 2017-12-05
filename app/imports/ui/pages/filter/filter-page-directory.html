@@ -1,7 +1,32 @@
 <template name="Filter_Page_Directory">
   <div style="margin-top: 20px" class="ui cards">
-    {{#each profile in profiles }}
-      {{> Directory_Profile profile=profile }}
+    {{#each order in orders }}
+      <div class="card">
+        <div class="content">
+          <div class="header">
+            {{ order.restaurant }}
+          </div>
+          <div class="meta">
+            {{ order.timeMinutes }}
+          </div>
+          <div class="meta">
+            {{ order.interest }}
+          </div>
+          <div class="description">
+            {{ order.items}}
+          </div>
+          <div class="meta">
+            {{ order.pickupLocation }}
+          </div>
+          <div style="margin-top: 10px">
+            {{#each interest in order.interests}}
+              <a style="margin-bottom: 2px" class="ui red tag small label">{{interest}}</a>
+            {{/each}}
+
+          </div>
+        </div>
+      </div>
     {{/each}}
+
   </div>
 </template>
