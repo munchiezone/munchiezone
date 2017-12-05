@@ -21,7 +21,9 @@ Template.Filter_Page.helpers({
     return _.filter(allOrders, order => _.intersection(order.restaurants, selectedRestaurants).length > 0);
 
   },
-
+  routeUserName() {
+    return FlowRouter.getParam('username');
+  },
   restaurants() {
     return _.map(Restaurants.findAll(),
         function makeRestaurantObject(restaurant) {
