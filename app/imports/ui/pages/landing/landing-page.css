@@ -3,6 +3,8 @@
   background: url("https://orig00.deviantart.net/f582/f/2011/249/f/c/food_is_good_by_sprits-d492iza.png");
   background-color: #ECE4D9;
   color: crimson;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .break-section {
   background-color: #7A344F;
@@ -21,30 +23,40 @@
   padding: 20px 10px 20px 10px;
   background-color: #F1E9DE;
   color:  #7A344F;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .landing-section-3 {
   padding: 20px 10px 30px 30px;
   background-color: #7A344F;
   color: #F1E9DE;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .landing-section-4 {
   padding: 20px 10px 30px 30px;
   background-color: #7A344F;
   color: #F1E9DE;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .landing-section-5 {
   padding: 20px 10px 20px 10px;
   background-color: #F1E9DE;
   color:  #7A344F;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .landing-section-1-welcome {
   font-family: 'Roboto', sans-serif;
   font-weight: 900;
   font-size: 72px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .landing-section-header {
