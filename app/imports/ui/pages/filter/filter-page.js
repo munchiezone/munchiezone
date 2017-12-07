@@ -40,13 +40,8 @@ Template.Filter_Page.helpers({
 
 Template.Filter_Page.events({
   'submit .filter-data-form'(event, instance) {
-    alert("Inside function");
     event.preventDefault();
-  alert("preventDefault");
     const selectedOptions = _.filter(event.target.Orders.selectedOptions, (option) => option.selected);
-  alert("selectedOptions");
     instance.messageFlags.set(selectedRestaurantsKey, _.map(selectedOptions, (option) => option.value));
-  }
+  },
 });
-
-
