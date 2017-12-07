@@ -48,7 +48,7 @@ Template.Edit_Page.helpers({
 
 
 Template.Edit_Page.events({
-  'submit .order-data-form'(event, instance) {
+  'submit .edit-data-form'(event, instance) {
     event.preventDefault();
     const items = event.target.Order.value;
     const timeMinutes = event.target.Time.value;

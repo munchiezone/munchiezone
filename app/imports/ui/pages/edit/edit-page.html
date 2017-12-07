@@ -6,7 +6,7 @@
     <div class="ui dividing header">
       Add an Order!
     </div>
-    <form class="ui equal width form order-data-form {{ successClass }} {{ errorClass }}">
+    <form class="ui equal width form edit-data-form {{ successClass }} {{ errorClass }}">
 
       <div class="disabled field">
         {{> Select_Form_Control label="Restaurant" options=restaurants required=true errorMessage=(fieldError "restaurants") multiple=false }}
