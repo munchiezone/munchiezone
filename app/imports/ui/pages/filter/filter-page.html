@@ -18,6 +18,15 @@
       <div class="ui horizontal divider">Current Orders</div>
 
       {{> Filter_Page_Directory orders=orders }}
+      <div style="margin-top: 10px" class="ui container">
+        <div class="ui cards">
+
+          {{#each order in orders }}
+          {{> Directory_Order order=order }}
+          {{/each}}
+
+        </div>
+      </div>
 
       <div class="ui horizontal divider">Or</div>
 

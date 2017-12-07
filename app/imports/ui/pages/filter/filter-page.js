@@ -31,6 +31,12 @@ Template.Filter_Page.helpers({
           };
         });
   },
+  /**
+   * Returns a cursor to profiles, sorted by last name.
+   */
+  orders() {
+    return Orders.find({}, { sort: { restaurant: 1 } });
+  },
 });
 
 Template.Filter_Page.events({
