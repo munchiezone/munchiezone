@@ -3,6 +3,7 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { _ } from 'meteor/underscore';
 import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
+import { Orders } from '/imports/api/order/OrderCollection';
 
 const selectedInterestsKey = 'selectedInterests';
 
@@ -14,7 +15,7 @@ Template.Home_Page.onCreated(function onCreated() {
 });
 
 Template.Home_Page.helpers({
-  profiles() {
+/*  profiles() {
     // Initialize selectedInterests to all of them if messageFlags is undefined.
     if (!Template.instance().messageFlags.get(selectedInterestsKey)) {
       Template.instance().messageFlags.set(selectedInterestsKey, _.map(Interests.findAll(), interest => interest.name));
@@ -24,7 +25,10 @@ Template.Home_Page.helpers({
     const selectedInterests = Template.instance().messageFlags.get(selectedInterestsKey);
     return _.filter(allProfiles, profile => _.intersection(profile.interests, selectedInterests).length > 0);
   },
-
+  */
+  orders() {
+    return Orders.find({}, { sort: { restaurant: 1 } });
+  },
   interests() {
     return _.map(Interests.findAll(),
         function makeInterestObject(interest) {

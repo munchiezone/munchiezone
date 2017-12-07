@@ -15,14 +15,16 @@ Template.Filter_Page.onCreated(function onCreated() {
 
 Template.Filter_Page.helpers({
   orders() {
-    if (!Template.instance().messageFlags.get(selectedRestaurantsKey)) {
-      Template.instance().messageFlags.set(selectedRestaurantsKey, _.map(Restaurants.findAll(), restaurants => restaurant.name));
+   /* if (!Template.instance().messageFlags.get(selectedRestaurantsKey)) {
+      Template.instance().messageFlags.set(selectedRestaurantsKey, _.map(Restaurants.findAll(),
+          restaurants => Restaurants.name));
     }
     // Find all orders with the currently selected interests.
     const allOrders = Orders.findAll();
     const selectedRestaurants = Template.instance().messageFlags.get(selectedRestaurantsKey);
     return _.filter(allOrders, order => _.intersection(order.restaurant, selectedRestaurants).length > 0);
-
+    */
+    return Orders.find({}, { sort: { restaurant: 1 } });
   },
   routeUserName() {
     return FlowRouter.getParam('username');
@@ -38,10 +40,9 @@ Template.Filter_Page.helpers({
   },
   /**
    * Returns a cursor to profiles, sorted by last name.
-   */
-  orders() {
+   orders() {
     return Orders.find({}, { sort: { restaurant: 1 } });
-  },
+  },*/
 });
 
 Template.Filter_Page.events({
