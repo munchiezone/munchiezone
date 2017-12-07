@@ -84,6 +84,14 @@ userRoutes.route('/create', {
   },
 });
 
+export const editPageRouteName = 'Edit_Page';
+userRoutes.route('/edit', {
+  name: createPageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: editPageRouteName });
+  },
+});
+
 /*                        MISC ROUTES                       */
 FlowRouter.notFound = {
   action() {
