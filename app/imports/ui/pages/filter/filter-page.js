@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { _ } from 'meteor/underscore';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Orders } from '/imports/api/order/OrderCollection';
 import { Restaurants } from '/imports/api/restaurant/RestaurantCollection';
 
@@ -41,8 +42,10 @@ Template.Filter_Page.helpers({
   /**
    * Returns a cursor to profiles, sorted by last name.
    orders() {
+   */
+  orders2() {
     return Orders.find({}, { sort: { restaurant: 1 } });
-  },*/
+  },
 });
 
 Template.Filter_Page.events({
