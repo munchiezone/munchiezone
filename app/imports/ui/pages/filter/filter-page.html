@@ -10,7 +10,7 @@
 
         <br>
         <div class="ui two wide column centered grid"></div>
-        <button class="ui red button" type="submit"><i class="search" icon></i>Filter</button>
+        <button class="ui red button" type="submit"><i class="submit" icon></i>Filter</button>
       </form>
 
       <br>
@@ -18,14 +18,14 @@
       <div class="ui horizontal divider">Current Orders</div>
 
       {{> Filter_Page_Directory orders=orders }}
-      <div style="margin-top: 10px" class="ui container">
-        <div class="ui cards">
+      <div style="margin-top: 10px" class="ui four column doubling centered stackable grid container">
 
-          {{#each order in orders2 }}
-          {{> Directory_Order order=order }}
-          {{/each}}
+        {{#each order in orders2 }}
+          <div style="margin: 10px;">
+            {{> Directory_Order order=order }}
+          </div>
+        {{/each}}
 
-        </div>
       </div>
 
 

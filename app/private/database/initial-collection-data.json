@@ -47,6 +47,7 @@
       "contents": [
         {
           "name": "McDonalds",
+          "picture": "/images/mcdonald.png",
           "description": "."
         },
         {

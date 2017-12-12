@@ -1,5 +1,32 @@
 <template name="Directory_Order">
 
+  <div class="ui card">
+    <!-- Insert image -->
+    <div class="image">
+      <img style="height: 205px" src="{{ order.picture }}">
+    </div>
+    <div class="content">
+      <div class="header">
+        {{ order.restaurant }}
+      </div>
+      <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px">
+        {{#each interest in order.interest}}
+          {{interest}}
+        {{/each}}
+      </div>
+      <br><br>
+      <div class="tiny ui red animated button" tabindex="0">
+        <div class="visible content">Join Order</div>
+        <div class="hidden content">
+          <i class="right arrow icon"></i>
+        </div>
+      </div>
+      <div class="meta">
+        {{ order.pickupLocation }}
+      </div>
+    </div>
+  </div>
+<!--
   <div class="card">
     <div class="content">
       <div class="header">
@@ -25,5 +52,5 @@
       </div>
     </div>
   </div>
-
+-->
 </template>

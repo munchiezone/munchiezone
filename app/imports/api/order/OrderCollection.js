@@ -28,6 +28,7 @@ class OrderCollection extends BaseCollection {
       'interest.$': { type: String },
       timeMinutes: { type: String },
       pickupLocation: { type: String },
+      picture: { type: SimpleSchema.RegEx.Url, optional: true },
     }, { tracker: Tracker }));
   }
 
@@ -48,12 +49,16 @@ class OrderCollection extends BaseCollection {
    * if one or more interests
    * @returns The newly created docID.
    */
-  define({ restaurant = [], items = '', username, foodType = [], interest = [],
-           timeMinutes = '', pickupLocation = '' }) {
+  define({
+           restaurant = [], items = '', username, foodType = [], interest = [],
+           timeMinutes = '', pickupLocation = '', picture = '',
+         }) {
     // make sure required fields are OK.
-    const checkPattern = { restaurant: String, items: String, username: String, location: String,
-      timeMinutes: String };
-    check({ restaurant, items, username, foodType, interest, timeMinutes, pickupLocation }, checkPattern);
+    const checkPattern = {
+      restaurant: String, items: String, username: String, location: String,
+      timeMinutes: String, picture: String,
+    };
+    check({ restaurant, items, username, foodType, interest, timeMinutes, pickupLocation, picture }, checkPattern);
 
     if (this.find({ restaurant }).count() > 0) {
       throw new Meteor.Error(`${restaurant} is previously defined in another Order`);
@@ -68,7 +73,16 @@ class OrderCollection extends BaseCollection {
       throw new Meteor.Error(`${interest} contains duplicates`);
     }
 
-    return this._collection.insert({ restaurant, items, username, foodType, interest, timeMinutes, pickupLocation });
+    return this._collection.insert({
+      restaurant,
+      items,
+      username,
+      foodType,
+      interest,
+      timeMinutes,
+      pickupLocation,
+      picture,
+    });
   }
 
   /**
@@ -85,7 +99,8 @@ class OrderCollection extends BaseCollection {
     const interest = doc.interest;
     const timeMinutes = doc.timeMinutes;
     const pickupLocation = doc.pickupLocation;
-    return { restaurant, items, username, foodType, interest, timeMinutes, pickupLocation };
+    const picture = doc.picture;
+    return { restaurant, items, username, foodType, interest, timeMinutes, pickupLocation, picture };
   }
 }
 
