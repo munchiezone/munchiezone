@@ -1,7 +1,7 @@
 <template name="Home_Page_Directory">
   <div style="margin-top: 20px" class="ui cards">
     {{#each order in orders }}
-    {{> Directory_Order profile=profile }}
+      {{ Directory_Order order=order }}
     {{/each}}
   </div>
 </template>
