@@ -3,12 +3,15 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { _ } from 'meteor/underscore';
 import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { Orders } from '/imports/api/order/OrderCollection';
+import { Restaurants } from '/imports/api/restaurant/RestaurantCollection';
 
 const selectedInterestsKey = 'selectedInterests';
 
 Template.Home_Page.onCreated(function onCreated() {
-  this.subscribe(Interests.getPublicationName());
-  this.subscribe(Profiles.getPublicationName());
+  this.subscribe(Restaurants.getPublicationName());
+  this.subscribe(Orders.getPublicationName());
   this.messageFlags = new ReactiveDict();
   this.messageFlags.set(selectedInterestsKey, undefined);
 });
@@ -31,6 +34,34 @@ Template.Home_Page.helpers({
           return {
             label: interest.name,
             selected: _.contains(Template.instance().messageFlags.get(selectedInterestsKey), interest.name),
+          };
+        });
+  },
+
+  orders() {
+    if (!Template.instance().messageFlags.get(selectedRestaurantsKey)) {
+      Template.instance().messageFlags.set(selectedRestaurantsKey, _.map(Restaurants.findAll(), restaurants => restaurant.name));
+    }
+    // Find all orders with the currently selected interests.
+    const allOrders = Orders.findAll();
+    const selectedRestaurants = Template.instance().messageFlags.get(selectedRestaurantsKey);
+    return _.filter(allOrders, order => _.intersection(order.restaurant, selectedRestaurants).length > 0);
+
+  },
+
+  orders2() {
+    return Orders.find({}, { sort: { restaurant: 1 } });
+  },
+
+  routeUserName() {
+    return FlowRouter.getParam('username');
+  },
+  restaurants() {
+    return _.map(Restaurants.findAll(),
+        function makeRestaurantObject(restaurant) {
+          return {
+            label: restaurant.name,
+            selected: _.contains(Template.instance().messageFlags.get(selectedRestaurantsKey), restaurant.name),
           };
         });
   },
