@@ -3,15 +3,16 @@
   <div class="ui card">
     <!-- Insert image -->
     <div class="image">
-      <img style="height: 205px" src="{{ order.picture }}">
+      <img style="height: 205px" src="{{ order.picture }}"> <!-- This bit isnt working -->
     </div>
     <div class="content">
       <div class="header">
         {{ order.restaurant }}
       </div>
       <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px">
+        ||
         {{#each interest in order.interest}}
-          {{interest}}
+           <i>{{interest}}</i> ||
         {{/each}}
       </div>
       <br><br>
@@ -26,31 +27,5 @@
       </div>
     </div>
   </div>
-<!--
-  <div class="card">
-    <div class="content">
-      <div class="header">
-        {{ order.restaurant }}
-      </div>
-      <div class="meta">
-        {{ order.timeMinutes }}
-      </div>
-      <div class="meta">
-        {{ order.interest }}
-      </div>
-      <div class="description">
-        {{ order.items}}
-      </div>
-      <div class="meta">
-        {{ order.pickupLocation }}
-      </div>
-      <div style="margin-top: 10px">
-        {{#each interest in order.interests}}
-          <a style="margin-bottom: 2px" class="ui red tag small label">{{interest}}</a>
-        {{/each}}
 
-      </div>
-    </div>
-  </div>
--->
 </template>

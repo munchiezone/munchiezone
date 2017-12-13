@@ -28,7 +28,7 @@ class OrderCollection extends BaseCollection {
       'interest.$': { type: String },
       timeMinutes: { type: String },
       pickupLocation: { type: String },
-      picture: { type: SimpleSchema.RegEx.Url, optional: true },
+      picture: { type: String, optional: true },
     }, { tracker: Tracker }));
   }
 
