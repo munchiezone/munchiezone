@@ -76,6 +76,14 @@ userRoutes.route('/home', {
   },
 });
 
+export const editPageRouteName = 'Edit_Page';
+userRoutes.route('/edit', {
+  name: editPageRouteName,
+  action() {
+    BlazeLayout.render('User_Layout', { main: editPageRouteName });
+  },
+});
+
 export const createPageRouteName = 'Create_Page';
 userRoutes.route('/create', {
   name: createPageRouteName,
