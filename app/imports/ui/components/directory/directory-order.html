@@ -9,13 +9,13 @@
       <div class="header">
         {{ order.restaurant }}
       </div>
-      <div style="margin-top: 10px; margin-left: 10px; margin-right: 10px">
-        ||
+      <div style="margin-top: 10px">
         {{#each interest in order.interest}}
-          <i>{{interest}}</i> ||
+        <a style="margin-bottom: 2px" class="ui pink flag small label">{{interest}}</a>
         {{/each}}
         <br><br>
       </div>
+
       <div class="meta">
         Order Time: {{ order.time }}
         <br>
