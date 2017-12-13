@@ -3,7 +3,7 @@
   <div class="ui card">
     <!-- Insert image -->
     <div class="image">
-      <img style="height: 205px" src="{{ order.picture }}"> <!-- This bit isnt working -->
+      <img style="height: 205px" src="{{ order.picture }}">
     </div>
     <div class="content">
       <div class="header">
@@ -17,6 +17,10 @@
         <br><br>
       </div>
       <div class="meta">
+        Order Time: {{ order.time }}
+        <br>
+        Pickup Time: {{ order.meetup }}
+        <br><br>
         Pick Up Location
         <br>
         {{ order.pickupLocation }}

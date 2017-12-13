@@ -26,9 +26,10 @@ class OrderCollection extends BaseCollection {
       foodType: { type: String, optional: true },
       interest: { type: Array, optional: true },
       'interest.$': { type: String },
-      timeMinutes: { type: Number },
       pickupLocation: { type: String },
-      picture: { type: SimpleSchema.RegEx.Url, optional: true },
+      picture: { type: SimpleSchema.RegEx.Url },
+      time: { type: String },
+      meetup: { type: String },
     }, { tracker: Tracker }));
   }
 
@@ -51,14 +52,14 @@ class OrderCollection extends BaseCollection {
    */
   define({
            restaurant = [], items = '', username, foodType = [], interest = [],
-           timeMinutes = '', pickupLocation = '', picture = '',
+           pickupLocation = '', picture = '', time = '', meetup = '',
          }) {
     // make sure required fields are OK.
     const checkPattern = {
       restaurant: String, items: String, username: String, location: String,
-      timeMinutes: Number, picture: String,
+      picture: String, time: String, meetup: String,
     };
-    check({ restaurant, items, username, foodType, interest, timeMinutes, pickupLocation, picture }, checkPattern);
+    check({ restaurant, items, username, foodType, interest, pickupLocation, picture, time, meetup }, checkPattern);
 
     if (this.find({ restaurant }).count() > 0) {
       throw new Meteor.Error(`${restaurant} is previously defined in another Order`);
@@ -79,9 +80,10 @@ class OrderCollection extends BaseCollection {
       username,
       foodType,
       interest,
-      timeMinutes,
       pickupLocation,
       picture,
+      time,
+      meetup,
     });
   }
 
@@ -97,10 +99,11 @@ class OrderCollection extends BaseCollection {
     const username = doc.username;
     const foodType = doc.foodType;
     const interest = doc.interest;
-    const timeMinutes = doc.timeMinutes;
     const pickupLocation = doc.pickupLocation;
     const picture = doc.picture;
-    return { restaurant, items, username, foodType, interest, timeMinutes, pickupLocation, picture };
+    const time = doc.time;
+    const meetup = doc.meetup;
+    return { restaurant, items, username, foodType, interest, pickupLocation, picture, time, meetup };
   }
 }
 
