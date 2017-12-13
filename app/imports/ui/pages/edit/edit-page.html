@@ -1,0 +1,49 @@
+<template name="Edit_Page">
+
+  {{#if Template.subscriptionsReady}}
+
+  <div style="background: rgba(255, 255, 255, 0.6)" class="ui text container segment">
+    <div class="ui dividing header">
+      Add an Order!
+    </div>
+    <form class="ui equal width form edit-data-form {{ successClass }} {{ errorClass }}">
+
+      <div class="disabled field">
+        {{> Select_Form_Control label="Restaurant" options=restaurants required=true errorMessage=(fieldError "restaurants") multiple=false }}
+      </div>
+
+      <div class="field">
+        {{> TextArea_Form_Control label="Order" placeholder="Order here" required=true errorMessage=(fieldError "orders") rows="4"}}
+      </div>
+
+      <div class="disabled field">
+        {{> Text_Form_Control label="Food" placeholder="Type of Food" options=interests errorMessage=(fieldError "type") multiple=true }}
+      </div>
+
+      <div class="disabled fields">
+        {{> Select_Form_Control label="Diet" options=interests errorMessage=(fieldError "interests") multiple=true }}
+
+        {{> Text_Form_Control label="Time" placeholder="Time Limit" required=true errorMessage=(fieldError "time") }}
+      </div>
+
+      <div class="disabled field">
+        {{> Text_Form_Control label="Pickup" placeholder="Pickup Location" required=true errorMessage=(fieldError "pickup") }}
+      </div>
+      <!-- Not sure What else we need, kept Text_Form_Control for template
+      <div class="field">
+        {{> Text_Form_Control label="Email" placeholder="email@sample.com" value=profile.email
+        errorMessage=(fieldError "email")}}
+      </div>
+      -->
+
+      <button class="ui primary button" type="submit">Submit</button>
+      {{#if displaySuccessMessage}}
+      <div class="ui success message">
+        <p>Your Order Has Been Added.</p>
+      </div>
+      {{/if}}
+    </form>
+  </div>
+
+  {{/if}}
+</template>
