@@ -26,8 +26,10 @@ class OrderCollection extends BaseCollection {
       foodType: { type: String, optional: true },
       interest: { type: Array, optional: true },
       'interest.$': { type: String },
-      timeMinutes: { type: String },
       pickupLocation: { type: String },
+      picture: { type: SimpleSchema.RegEx.Url },
+      time: { type: String },
+      meetup: { type: String },
     }, { tracker: Tracker }));
   }
 
@@ -48,12 +50,16 @@ class OrderCollection extends BaseCollection {
    * if one or more interests
    * @returns The newly created docID.
    */
-  define({ restaurant = [], items = '', username, foodType = [], interest = [],
-           timeMinutes = '', pickupLocation = '' }) {
+  define({
+           restaurant = [], items = '', username, foodType = [], interest = [],
+           pickupLocation = '', picture = '', time = '', meetup = '',
+         }) {
     // make sure required fields are OK.
-    const checkPattern = { restaurant: String, items: String, username: String, location: String,
-      timeMinutes: String };
-    check({ restaurant, items, username, foodType, interest, timeMinutes, pickupLocation }, checkPattern);
+    const checkPattern = {
+      restaurant: String, items: String, username: String, location: String,
+      picture: String, time: String, meetup: String,
+    };
+    check({ restaurant, items, username, foodType, interest, pickupLocation, picture, time, meetup }, checkPattern);
 
     if (this.find({ restaurant }).count() > 0) {
       throw new Meteor.Error(`${restaurant} is previously defined in another Order`);
@@ -68,7 +74,17 @@ class OrderCollection extends BaseCollection {
       throw new Meteor.Error(`${interest} contains duplicates`);
     }
 
-    return this._collection.insert({ restaurant, items, username, foodType, interest, timeMinutes, pickupLocation });
+    return this._collection.insert({
+      restaurant,
+      items,
+      username,
+      foodType,
+      interest,
+      pickupLocation,
+      picture,
+      time,
+      meetup,
+    });
   }
 
   /**
@@ -83,9 +99,11 @@ class OrderCollection extends BaseCollection {
     const username = doc.username;
     const foodType = doc.foodType;
     const interest = doc.interest;
-    const timeMinutes = doc.timeMinutes;
     const pickupLocation = doc.pickupLocation;
-    return { restaurant, items, username, foodType, interest, timeMinutes, pickupLocation };
+    const picture = doc.picture;
+    const time = doc.time;
+    const meetup = doc.meetup;
+    return { restaurant, items, username, foodType, interest, pickupLocation, picture, time, meetup };
   }
 }
 

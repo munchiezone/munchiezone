@@ -46,20 +46,21 @@ Template.Create_Page.helpers({
   },
 });
 
-
 Template.Create_Page.events({
   'submit .order-data-form'(event, instance) {
     event.preventDefault();
     const items = event.target.Order.value;
-    const timeMinutes = event.target.Time.value;
     const pickupLocation = event.target.Pickup.value;
     const selectedInterests = _.filter(event.target.Diet.selectedOptions, (option) => option.selected);
     const interest = _.map(selectedInterests, (option) => option.value);
     const selectedRestaurant = _.filter(event.target.Restaurant.selectedOptions, (option) => option.selected);
     const restaurant = _.map(selectedRestaurant, (option) => option.value);
     const foodType = event.target.Food.value;
+    const picture = event.target.Picture.value;
+    const time = event.target.Time.value;
+    const meetup = event.target.MeetUp.value;
 
-    const newOrderData = { restaurant, items, foodType, interest, timeMinutes, pickupLocation };
+    const newOrderData = { restaurant, items, foodType, interest, pickupLocation, picture, time, meetup };
 
     // Clear out any old validation errors.
     instance.context.reset();

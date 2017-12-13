@@ -74,4 +74,3 @@ Template.Home_Page.events({
     instance.messageFlags.set(selectedInterestsKey, _.map(selectedOptions, (option) => option.value));
   },
 });
-

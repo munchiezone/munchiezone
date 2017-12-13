@@ -23,7 +23,13 @@
       <div class="fields">
         {{> Select_Form_Control label="Diet" options=interests errorMessage=(fieldError "interests") multiple=true }}
 
-        {{> Text_Form_Control label="Time" placeholder="Time Limit" required=true errorMessage=(fieldError "time") }}
+        {{> Text_Form_Control label="Picture" placeholder="http://foo.com/shot.jpg" required=true value=restaurant.picture errorMessage=(fieldError "picture")}}
+      </div>
+
+      <div class="fields">
+        {{> Text_Form_Control label="Time" placeholder="Time to Order By" required=true value=order.time errorMessage=(fieldError "time")}}
+
+        {{> Text_Form_Control label="MeetUp" placeholder="Time to Grab Food!" required=true value=order.meetup errorMessage=(fieldError "meetup")}}
       </div>
 
       <div class="field">

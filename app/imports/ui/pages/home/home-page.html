@@ -2,91 +2,88 @@
   {{#if Template.subscriptionsReady}}
     <div style="margin-top: 10px; background: rgba(255, 255, 255, 0.6)" class="ui container segment">
 
-        <!--
+      <!--
               {{> Filter_Page_Directory profiles=profiles }}
       -->
-        <br>
+      <br>
 
-        <!-- Your Orders Section Start -->
-        <div class="ui horizontal divider">
-          Your Current Order(s)
-        </div>
+      <!-- Your Orders Section Start -->
+      <div class="ui horizontal divider">
+        Your Current Order(s)
+      </div>
 
-        <br>
+      <br>
 
       <div style="margin-top: 10px" class="ui container">
         <div class="ui cards">
 
           {{#each order in orders2 }}
-          {{> Directory_Order order=order }}
+            {{> Directory_Order order=order }}
           {{/each}}
 
         </div>
       </div>
 
-        <!-- Your Orders Section End -->
+      <!-- Your Orders Section End -->
 
-        <br>
+      <br>
 
 
-        <!-- Order From Favorites Section Start -->
-        <div class="ui horizontal divider">
-          Join an Order From Your Favorite Places!
-        </div>
+      <!-- Order From Favorites Section Start -->
+      <div class="ui horizontal divider">
+        Join an Order From Your Favorite Places!
+      </div>
 
-        <br>
+      <br>
       <div style="margin-top: 10px" class="ui container">
         <div class="ui cards">
 
           {{#each order in orders2 }}
-          {{> Directory_Order order=order }}
+            {{> Directory_Order order=order }}
           {{/each}}
 
         </div>
       </div>
-        <!-- Order From Favorites End -->
+      <!-- Order From Favorites End -->
 
-        <div class="ui horizontal divider">
-          Favorites
+      <div class="ui horizontal divider">
+        Favorites
+      </div>
+
+      <br>
+
+      <div style="background: rgba(255, 255, 255, 0.6)" class="ui four column doubling stackable grid container">
+        <div class="column">
+          <a href="#"><img class="ui small left floated image"
+                           src="http://www.visitcorpuschristitx.org/site-images/1687/300x301"></a>
         </div>
 
-        <br>
 
-        <div style="background: rgba(255, 255, 255, 0.6)" class="ui four column doubling stackable grid container">
-          <div class="column">
-            <a href="#"><img class="ui small left floated image"
-                             src="http://www.visitcorpuschristitx.org/site-images/1687/300x301"></a>
-          </div>
-
-
-          <div class="column">
-            <a href="#"><img class="ui small left floated image"
-                             src="https://i1.wp.com/maharani-restaurant.com/wp-content/uploads/2017/09/logo-main3.png?fit=500%2C393"></a>
-          </div>
-
-
-          <div class="column">
-            <a href="#"><img class="ui small left floated image"
-                             src="https://static.wixstatic.com/media/4207ab_11939726b81c4d5fbd34ec5b35c6f3de.png/v1/fill/w_162,h_161,al_c,usm_0.66_1.00_0.01/4207ab_11939726b81c4d5fbd34ec5b35c6f3de.png"></a>
-          </div>
-
+        <div class="column">
+          <a href="#"><img class="ui small left floated image"
+                           src="https://i1.wp.com/maharani-restaurant.com/wp-content/uploads/2017/09/logo-main3.png?fit=500%2C393"></a>
         </div>
 
-        <br>
-        <br>
 
-        <!-- Create new Order button
-        <div class="ui two wide column centered grid">
-          <button class="ui centered green labeled icon button">
-
-            <i class="add icon"></i>
-            Create New Order
-          </button>
-
-          <br>
-
+        <div class="column">
+          <a href="#"><img class="ui small left floated image"
+                           src="https://static.wixstatic.com/media/4207ab_11939726b81c4d5fbd34ec5b35c6f3de.png/v1/fill/w_162,h_161,al_c,usm_0.66_1.00_0.01/4207ab_11939726b81c4d5fbd34ec5b35c6f3de.png"></a>
         </div>
-        -->
+
+      </div>
+
+      <br>
+      <br>
+
+      <!-- Create new Order button
+      <div class="ui two wide column centered grid">
+        <button class="ui centered green labeled icon button">
+          <i class="add icon"></i>
+          Create New Order
+        </button>
+        <br>
+      </div>
+      -->
 
     </div>
 

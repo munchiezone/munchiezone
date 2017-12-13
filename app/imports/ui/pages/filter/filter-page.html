@@ -1,7 +1,6 @@
 <template name="Filter_Page">
   {{#if Template.subscriptionsReady}}
     <div style="margin-top: 10px; background: rgba(255, 255, 255, 0.8)" class="ui container segment">
-
       <form class="ui equal width form filter-data-form">
         <div class="field">
           <div class="ui horizontal divider"><h3>Restaurants</h3></div>
@@ -10,21 +9,22 @@
 
         <br>
         <div class="ui two wide column centered grid"></div>
-        <button class="ui red button" type="submit"><i class="search" icon></i>Filter</button>
+        <button class="ui red button" type="submit"><i class="submit" icon></i>Filter</button>
       </form>
 
       <br>
 
       <div class="ui horizontal divider">Current Orders</div>
 
-      <div style="margin-top: 10px" class="ui container">
-        <div class="ui cards">
+      {{> Filter_Page_Directory orders=orders }}
+      <div style="margin-top: 10px" class="ui four column doubling centered stackable grid container">
 
-          {{#each order in orders2 }}
-          {{> Directory_Order order=order }}
-          {{/each}}
+        {{#each order in orders2 }}
+          <div style="margin: 10px;">
+            {{> Directory_Order order=order }}
+          </div>
+        {{/each}}
 
-        </div>
       </div>
 
 
@@ -36,10 +36,11 @@
         <a class="{{isActiveRoute "Create_Page"}} item" href="{{pathFor "Create_Page" username=routeUserName}}">
           <button class="ui centered red labeled icon button"><i class="add icon"></i>Create New Order</button>
         </a>
+
         <br>
         <br>
       </div>
-      
+
 
     </div>
   {{/if}}

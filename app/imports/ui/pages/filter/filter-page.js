@@ -52,5 +52,3 @@ Template.Filter_Page.events({
     instance.messageFlags.set(selectedRestaurantsKey, _.map(selectedOptions, (option) => option.value));
   }
 });
-
-
