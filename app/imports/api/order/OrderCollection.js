@@ -26,9 +26,9 @@ class OrderCollection extends BaseCollection {
       foodType: { type: String, optional: true },
       interest: { type: Array, optional: true },
       'interest.$': { type: String },
-      timeMinutes: { type: String },
+      timeMinutes: { type: Number },
       pickupLocation: { type: String },
-      picture: { type: String, optional: true },
+      picture: { type: SimpleSchema.RegEx.Url, optional: true },
     }, { tracker: Tracker }));
   }
 
@@ -56,7 +56,7 @@ class OrderCollection extends BaseCollection {
     // make sure required fields are OK.
     const checkPattern = {
       restaurant: String, items: String, username: String, location: String,
-      timeMinutes: String, picture: String,
+      timeMinutes: Number, picture: String,
     };
     check({ restaurant, items, username, foodType, interest, timeMinutes, pickupLocation, picture }, checkPattern);
 
