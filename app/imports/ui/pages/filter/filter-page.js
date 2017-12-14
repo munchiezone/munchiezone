@@ -23,7 +23,7 @@ Template.Filter_Page.helpers({
     // Find all orders with the currently selected interests.
     const allOrders = Orders.findAll();
     const selectedRestaurants = Template.instance().messageFlags.get(selectedRestaurantsKey);
-    return _.filter(allOrders, order => _.intersection(order.restaurants, selectedRestaurants).length > 0);
+    return _.filter(allOrders, order => _.intersection(order.restaurant, selectedRestaurants).length > 0);
   },
   routeUserName() {
     return FlowRouter.getParam('username');

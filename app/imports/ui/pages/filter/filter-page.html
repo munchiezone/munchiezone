@@ -8,7 +8,6 @@
         </div>
 
         <br>
-        <div class="ui two wide column centered grid"></div>
         <button class="ui red button" type="submit"><i class="submit" icon></i>Filter</button>
       </form>
 
@@ -16,15 +15,9 @@
 
       <div class="ui horizontal divider">Current Orders</div>
 
-      {{> Filter_Page_Directory order=orders2 }}
       <div style="margin-top: 10px" class="ui four column doubling centered stackable grid container">
 
-        {{> Filter_Page_Directory order=orders2 }}
-        {{#each order in orders2 }}
-          <div style="margin: 10px;">
-            {{> Directory_Order order=order }}
-          </div>
-        {{/each}}
+        {{> Filter_Page_Directory order=orders }}
 
       </div>
 
