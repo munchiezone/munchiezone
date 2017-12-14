@@ -38,7 +38,6 @@ Template.Home_Page.helpers({
           };
         });
   },
-
   orders() {
     if (!Template.instance().messageFlags.get(selectedRestaurantsKey)) {
       Template.instance().messageFlags.set(selectedRestaurantsKey, _.map(Restaurants.findAll(), restaurants => restaurant.name));
@@ -48,22 +47,12 @@ Template.Home_Page.helpers({
     const selectedRestaurants = Template.instance().messageFlags.get(selectedRestaurantsKey);
     return _.filter(allOrders, order => _.intersection(order.restaurant, selectedRestaurants).length > 0);
   },
-
   orders2() {
     return Orders.find({ owner }, { sort: { restaurant: 1 } });
   },
 
   routeUserName() {
     return FlowRouter.getParam('username');
-  },
-  restaurants() {
-    return _.map(Restaurants.findAll(),
-        function makeRestaurantObject(restaurant) {
-          return {
-            label: restaurant.name,
-            selected: _.contains(Template.instance().messageFlags.get(selectedRestaurantsKey), restaurant.name),
-          };
-        });
   },
 });
 

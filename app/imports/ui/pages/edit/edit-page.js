@@ -77,7 +77,7 @@ Template.Edit_Page.events({
 
     if (instance.context.isValid()) {
       // const docID = Orders.findDoc(FlowRouter.getParam('order'))._id;
-      const id = Orders.insert(cleanData);
+      const id = Orders.update(cleanData);
       instance.messageFlags.set(displaySuccessMessage, id);
       instance.messageFlags.set(displayErrorMessages, false);
     } else {
