@@ -38,6 +38,15 @@ Template.Home_Page.helpers({
           };
         });
   },
+  orders() {
+    if (!Template.instance().messageFlags.get(selectedRestaurantsKey)) {
+      Template.instance().messageFlags.set(selectedRestaurantsKey, _.map(Restaurants.findAll(), restaurants => restaurant.name));
+    }
+    // Find all orders with the currently selected interests.
+    const allOrders = Orders.findAll();
+    const selectedRestaurants = Template.instance().messageFlags.get(selectedRestaurantsKey);
+    return _.filter(allOrders, order => _.intersection(order.restaurant, selectedRestaurants).length > 0);
+  },
   orders2() {
     return Orders.find({ owner }, { sort: { restaurant: 1 } });
   },

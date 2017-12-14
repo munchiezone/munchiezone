@@ -60,12 +60,12 @@ Template.Create_Page.events({
     const time = event.target.Time.value;
     const meetup = event.target.MeetUp.value;
 
-    const newOrderData = { restaurant, items, foodType, interest, pickupLocation, picture, time, meetup };
+    const updatedOrderData = { restaurant, items, foodType, interest, pickupLocation, picture, time, meetup };
 
     // Clear out any old validation errors.
     instance.context.reset();
     // Invoke clean so that updatedOrderData reflects what will be inserted.
-    const cleanData = Orders.getSchema().clean(newOrderData);
+    const cleanData = Orders.getSchema().clean(updatedOrderData);
     // Determine validity.
     instance.context.validate(cleanData);
 

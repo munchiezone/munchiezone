@@ -33,10 +33,17 @@ Template.Edit_Page.helpers({
     return Orders.findDoc(FlowRouter.getParam('order'));
   },
   interests() {
+    const order = Orders.findDoc(FlowRouter.getParam('_id'));
+    const selectedInterests = order.interests;
+    return order && _.map(Interests.findAll(),
+        function makeInterestObject(interest) {
+          return { label: interest.name, selected: _.contains(selectedInterests, interest.name) };
+        });
+    /*
     return _.map(Interests.findAll(),
         function makeInterestObject(interest) {
           return { label: interest.name };
-        });
+        }); */
   },
   restaurants() {
     return _.map(Restaurants.findAll(),
@@ -46,12 +53,12 @@ Template.Edit_Page.helpers({
   },
 });
 
-
 Template.Edit_Page.events({
   'submit .edit-data-form'(event, instance) {
     event.preventDefault();
     const items = event.target.Order.value;
-    const timeMinutes = event.target.Time.value;
+    const time = event.target.Time.value;
+    const meetup = event.target.MeetUp.value;
     const pickupLocation = event.target.Pickup.value;
     const selectedInterests = _.filter(event.target.Diet.selectedOptions, (option) => option.selected);
     const interest = _.map(selectedInterests, (option) => option.value);
@@ -59,10 +66,10 @@ Template.Edit_Page.events({
     const restaurant = _.map(selectedRestaurant, (option) => option.value);
     const foodType = event.target.Food.value;
 
-    const newOrderData = { restaurant, items, foodType, interest, timeMinutes, pickupLocation };
+    const newOrderData = { restaurant, items, foodType, interest, time, meetup, pickupLocation };
 
     // Clear out any old validation errors.
-    instance.context.reset();
+    instance.context.resetValidation();
     // Invoke clean so that updatedOrderData reflects what will be inserted.
     const cleanData = Orders.getSchema().clean(newOrderData);
     // Determine validity.
