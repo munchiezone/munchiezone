@@ -8,6 +8,7 @@ import { Orders } from '/imports/api/order/OrderCollection';
 import { Restaurants } from '/imports/api/restaurant/RestaurantCollection';
 
 const selectedInterestsKey = 'selectedInterests';
+const owner = this.userId;
 
 Template.Home_Page.onCreated(function onCreated() {
   this.subscribe(Restaurants.getPublicationName());
@@ -46,11 +47,10 @@ Template.Home_Page.helpers({
     const allOrders = Orders.findAll();
     const selectedRestaurants = Template.instance().messageFlags.get(selectedRestaurantsKey);
     return _.filter(allOrders, order => _.intersection(order.restaurant, selectedRestaurants).length > 0);
-
   },
 
   orders2() {
-    return Orders.find({}, { sort: { restaurant: 1 } });
+    return Orders.find({ owner }, { sort: { restaurant: 1 } });
   },
 
   routeUserName() {
