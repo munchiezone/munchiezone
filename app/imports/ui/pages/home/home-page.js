@@ -13,6 +13,7 @@ const owner = this.userId;
 Template.Home_Page.onCreated(function onCreated() {
   this.subscribe(Restaurants.getPublicationName());
   this.subscribe(Orders.getPublicationName());
+  this.subscribe(Profiles.getPublicationName());
   this.messageFlags = new ReactiveDict();
   this.messageFlags.set(selectedInterestsKey, undefined);
 });
