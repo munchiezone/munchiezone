@@ -4,7 +4,7 @@
 
     <div style="background: rgba(255, 255, 255, 0.6)" class="ui text container segment">
 
-      <form class="ui form order-data-form {{ errorClass }} ">
+      <form class="ui form edit-data-form {{ errorClass }} ">
         <h4 class="ui dividing header">Edit Order</h4>
         <div class="disabled field">
           {{> Text_Form_Control label="Restaurant" options=restaurants value=order.restaurant required=true errorMessage=(fieldError "restaurants") multiple=false }}
@@ -33,19 +33,13 @@
         <div class="disabled field">
           {{> Text_Form_Control label="Pickup" placeholder="Pickup Location" value=order.pickupLocation required=true errorMessage=(fieldError "pickup") }}
         </div>
-
-      </form>
-
-
-
-        <button style="margin-top: 10px" class="ui primary button" type="submit">Submit</button>
+       <button style="margin-top: 10px" class="ui primary button" type="submit">Submit</button>
         {{#if displaySuccessMessage}}
           <div class="ui success message">
             <p>Your Order Has Been Updated.</p>
           </div>
         {{/if}}
-
-
+      </form>
     </div>
 
   {{/if}}
