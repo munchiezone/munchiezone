@@ -50,5 +50,5 @@ Template.Filter_Page.events({
     event.preventDefault();
     const selectedOptions = _.filter(event.target.Orders.selectedOptions, (option) => option.selected);
     instance.messageFlags.set(selectedRestaurantsKey, _.map(selectedOptions, (option) => option.value));
-  }
+  },
 });

@@ -7,21 +7,21 @@
       <form class="ui form order-data-form {{ errorClass }} ">
         <h4 class="ui dividing header">Edit Order!</h4>
         <div class="disabled field">
-          {{> Select_Form_Control label="Restaurant" options=restaurants required=true errorMessage=(fieldError "restaurants") multiple=false }}
+          {{> Select_Form_Control label="Restaurant" options=restaurants value=order.restaurant required=true errorMessage=(fieldError "restaurants") multiple=false }}
         </div>
 
         <div class="field">
-          {{> TextArea_Form_Control label="Order" placeholder="Order here" required=true errorMessage=(fieldError "orders") rows="4"}}
+          {{> TextArea_Form_Control label="Order" placeholder="Order here" value=order.items required=true errorMessage=(fieldError "orders") rows="4"}}
         </div>
 
         <div class="disabled field">
-          {{> Text_Form_Control label="Food" placeholder="Type of Food" options=interests errorMessage=(fieldError "type") multiple=true }}
+          {{> Text_Form_Control label="Food" placeholder="Type of Food" value=order.foodType options=interests errorMessage=(fieldError "type") multiple=true }}
         </div>
 
         <div class="disabled fields">
           {{> Select_Form_Control label="Diet" options=interests errorMessage=(fieldError "interests") multiple=true }}
 
-          {{> Text_Form_Control label="Picture" placeholder="http://foo.com/shot.jpg" required=true value=restaurant.picture errorMessage=(fieldError "picture")}}
+          {{> Text_Form_Control label="Picture" placeholder="http://foo.com/shot.jpg" value=order.picture required=true value=order.picture errorMessage=(fieldError "picture")}}
         </div>
 
         <div class="disabled fields">
@@ -31,17 +31,17 @@
         </div>
 
         <div class="disabled field">
-          {{> Text_Form_Control label="Pickup" placeholder="Pickup Location" required=true errorMessage=(fieldError "pickup") }}
+          {{> Text_Form_Control label="Pickup" placeholder="Pickup Location" value=order.pickupLocation required=true errorMessage=(fieldError "pickup") }}
         </div>
 
       </form>
 
 
 
-        <button class="ui primary button" type="submit">Submit</button>
+        <button style="margin-top: 10px" class="ui primary button" type="submit">Submit</button>
         {{#if displaySuccessMessage}}
           <div class="ui success message">
-            <p>Your Order Has Been Added.</p>
+            <p>Your Order Has Been Updated.</p>
           </div>
         {{/if}}
 
