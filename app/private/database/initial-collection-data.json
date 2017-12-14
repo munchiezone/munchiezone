@@ -52,7 +52,6 @@
         },
         {
           "name": "Shaka Shaka Tea",
-          "picture": "http://localhost:3000/images/shakashaka.png",
           "description": "."
         },
         {
@@ -71,7 +70,7 @@
         },
         {
           "name": "Shokudo",
-          "picture": "/images/shokudo.png"
+          "picture": "/images/shokudo.png",
           "description": "."
         },
         {
@@ -80,12 +79,12 @@
         },
         {
           "name": "Burger King",
-          "picture": "https://www.festisite.com/static/partylogo/img/logos/burger-king.png"
+          "picture": "https://www.festisite.com/static/partylogo/img/logos/burger-king.png",
           "description": "."
         },
         {
           "name": "Panda Express",
-          "picture": "https://upload.wikimedia.org/wikipedia/en/thumb/7/79/Panda_Express.svg/1004px-Panda_Express.svg.png"
+          "picture": "https://upload.wikimedia.org/wikipedia/en/thumb/7/79/Panda_Express.svg/1004px-Panda_Express.svg.png",
           "description": ""
         },
         {
