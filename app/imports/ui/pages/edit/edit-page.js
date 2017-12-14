@@ -30,7 +30,7 @@ Template.Edit_Page.helpers({
     return Template.instance().messageFlags.get(displayErrorMessages) ? 'error' : '';
   },
   order() {
-    return Orders.findDoc(FlowRouter.getParam('order'));
+    return Orders.findDoc(FlowRouter.getParam('_id'));
   },
   interests() {
     const order = Orders.findDoc(FlowRouter.getParam('_id'));

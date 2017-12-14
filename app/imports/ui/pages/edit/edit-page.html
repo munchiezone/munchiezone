@@ -7,7 +7,7 @@
       <form class="ui form order-data-form {{ errorClass }} ">
         <h4 class="ui dividing header">Edit Order</h4>
         <div class="disabled field">
-          {{> Select_Form_Control label="Restaurant" options=restaurants value=order.restaurant required=true errorMessage=(fieldError "restaurants") multiple=false }}
+          {{> Text_Form_Control label="Restaurant" options=restaurants value=order.restaurant required=true errorMessage=(fieldError "restaurants") multiple=false }}
         </div>
 
         <div class="field">
@@ -19,7 +19,7 @@
         </div>
 
         <div class="disabled fields">
-          {{> Select_Form_Control label="Diet" options=interests errorMessage=(fieldError "interests") multiple=true }}
+          {{> Text_Form_Control label="Diet" options=interests errorMessage=(fieldError "interests") multiple=true }}
 
           {{> Text_Form_Control label="Picture" placeholder="http://foo.com/shot.jpg" value=order.picture required=true value=order.picture errorMessage=(fieldError "picture")}}
         </div>
