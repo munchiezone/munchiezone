@@ -5,10 +5,10 @@ import { Profiles } from '/imports/api/profile/ProfileCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { Orders } from '/imports/api/order/OrderCollection';
-import { MyOrders } from '/imports/api/myorder/MyOrderCollection';
 import { Restaurants } from '/imports/api/restaurant/RestaurantCollection';
 
 const selectedInterestsKey = 'selectedInterests';
+const owner = this.userId;
 
 Template.Home_Page.onCreated(function onCreated() {
   this.subscribe(Restaurants.getPublicationName());
@@ -39,7 +39,7 @@ Template.Home_Page.helpers({
         });
   },
   orders2() {
-    return MyOrders.find({}, { sort: { restaurant: 1 } });
+    return Orders.find({ owner }, { sort: { restaurant: 1 } });
   },
 
   routeUserName() {

@@ -3,7 +3,6 @@ import { ReactiveDict } from 'meteor/reactive-dict';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { Orders } from '/imports/api/order/OrderCollection';
-import { MyOrders } from '/imports/api/myorder/MyOrderCollection';
 import { Interests } from '/imports/api/interest/InterestCollection';
 import { Restaurants } from '/imports/api/restaurant/RestaurantCollection';
 
@@ -73,9 +72,7 @@ Template.Create_Page.events({
     if (instance.context.isValid()) {
       // const docID = Orders.findDoc(FlowRouter.getParam('order'))._id;
       const id = Orders.insert(cleanData);
-      const myid = MyOrders.insert(cleanData);
       instance.messageFlags.set(displaySuccessMessage, id);
-      instance.messageFlags.set(displaySuccessMessage, myid);
       instance.messageFlags.set(displayErrorMessages, false);
     } else {
       instance.messageFlags.set(displaySuccessMessage, false);
