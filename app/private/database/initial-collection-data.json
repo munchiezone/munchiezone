@@ -52,14 +52,17 @@
         },
         {
           "name": "Shaka Shaka Tea",
+          "picture": "http://localhost:3000/images/shakashaka.png",
           "description": "."
         },
         {
           "name": "Cafe Maharani",
+          "picture": "https://i1.wp.com/maharani-restaurant.com/wp-content/uploads/2017/09/logo-main3.png?fit=500%2C393",
           "description": "."
         },
         {
-          "name": "Curry House",
+          "name": "Up Roll Cafe",
+          "picture": "https://static.wixstatic.com/media/4207ab_11939726b81c4d5fbd34ec5b35c6f3de.png/v1/fill/w_162,h_161,al_c,usm_0.66_1.00_0.01/4207ab_11939726b81c4d5fbd34ec5b35c6f3de.png",
           "description": "."
         },
         {
@@ -68,6 +71,7 @@
         },
         {
           "name": "Shokudo",
+          "picture": "/images/shokudo.png"
           "description": "."
         },
         {
@@ -75,15 +79,18 @@
           "description": "."
         },
         {
-          "name": "Tsukuneya",
+          "name": "Burger King",
+          "picture": "https://www.festisite.com/static/partylogo/img/logos/burger-king.png"
           "description": "."
         },
         {
-          "name": "Alan Wong's",
+          "name": "Panda Express",
+          "picture": "https://upload.wikimedia.org/wikipedia/en/thumb/7/79/Panda_Express.svg/1004px-Panda_Express.svg.png"
           "description": ""
         },
         {
-          "name": "Cafe Kaila",
+          "name": "Chili's",
+          "picture": "http://vignette3.wikia.nocookie.net/logopedia/images/3/37/CHILI%27S_Logo_A.PNG/revision/latest?cb=20150717113723",
           "description": ""
         },
         {

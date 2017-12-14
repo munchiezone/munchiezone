@@ -7,13 +7,14 @@
     </div>
     <div class="content">
       <div class="header">
-        <a class="{{isActiveRoute "Edit_Page"}} item" href="{{pathFor "Edit_Page" username=routeUserName _id=order._id}}">
+        <a class="{{isActiveRoute "Edit_Page"}} item"
+           href="{{pathFor "Edit_Page" username=routeUserName _id=order._id}}">
           {{ order.restaurant }}
         </a>
       </div>
       <div style="margin-top: 10px">
         {{#each interest in order.interest}}
-        <a style="margin-bottom: 2px" class="ui pink flag small label">{{interest}}</a>
+          <a style="margin-bottom: 2px" class="ui pink flag small label">{{interest}}</a>
         {{/each}}
         <br><br>
       </div>
@@ -28,13 +29,14 @@
         {{ order.pickupLocation }}
       </div>
       <br><br>
-      <div class="tiny ui red animated button" tabindex="0">
-        <div class="visible content">Join Order</div>
-        <div class="hidden content">
-          <i class="right arrow icon"></i>
+      <a class="{{isActiveRoute "Edit_Page"}} item" href="{{pathFor "Edit_Page" username=routeUserName _id=order._id}}">
+        <div class="tiny ui red animated button" tabindex="0">
+          <div class="visible content">Join Order</div>
+          <div class="hidden content">
+            <i class="right arrow icon"></i>
+          </div>
         </div>
-      </div>
-
+      </a>
 
       <!-- Testing
 
