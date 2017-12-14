@@ -18,7 +18,7 @@
         <div class="ui cards">
 
           {{#each order in orders2 }}
-            {{> Directory_Order order=order }}
+            {{> Directory_MyOrder order=order }}
           {{/each}}
 
         </div>
@@ -54,8 +54,9 @@
 
       <div style="background: rgba(255, 255, 255, 0.6)" class="ui four column doubling stackable grid container">
         <div class="column">
-          <a href="#"><img class="ui small left floated image"
-                           src="http://www.visitcorpuschristitx.org/site-images/1687/300x301"></a>
+          {{ #each profile in profile }}
+            {{> Directory_Profile profile=profile }}
+          {{ /each }}
         </div>
 
 

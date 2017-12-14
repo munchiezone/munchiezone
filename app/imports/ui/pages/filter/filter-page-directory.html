@@ -1,7 +1,7 @@
 <template name="Filter_Page_Directory">
   <div style="margin-top: 20px" class="ui cards">
-    {{#each order in orders }}
-      {{ Directory_Order order=order}}
+    {{#each order in order }}
+      {{> Directory_Order order=order}}
     {{/each}}
 
   </div>
