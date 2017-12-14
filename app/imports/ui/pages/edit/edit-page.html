@@ -19,7 +19,7 @@
         </div>
 
         <div class="disabled fields">
-          {{> Text_Form_Control label="Diet" options=interests errorMessage=(fieldError "interests") multiple=true }}
+          {{> Text_Form_Control label="Diet" options=interests value=order.interest errorMessage=(fieldError "interests") multiple=true }}
 
           {{> Text_Form_Control label="Picture" placeholder="http://foo.com/shot.jpg" value=order.picture required=true value=order.picture errorMessage=(fieldError "picture")}}
         </div>
